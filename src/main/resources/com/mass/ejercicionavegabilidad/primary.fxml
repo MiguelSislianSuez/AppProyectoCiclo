@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="891.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.ControladorPantallaA">
+    <children>
+       
+      
+       
+        <Button fx:id="btnA" layoutX="505.0" layoutY="431.0" mnemonicParsing="false" onAction="#mostrarPantalla" style="-fx-background-radius: 100;" text="Pacientes" />
+        <Label layoutX="65.0" layoutY="65.0" text="Nombre" />
+        <TextField fx:id="tfNombre" layoutX="127.0" layoutY="61.0" onKeyTyped="#actNombre" promptText="Nombre" />
+        <Label layoutX="65.0" layoutY="105.0" text="Apellido" />
+        <TextField fx:id="tfApellido" layoutX="127.0" layoutY="101.0" onKeyTyped="#actApellido" promptText="Apellidos" />
+        <DatePicker fx:id="anio" editable="false" layoutX="127.0" layoutY="150.0" onAction="#actAnio" prefHeight="27.0" prefWidth="161.0" promptText="Nacido en" />
+        <TextArea fx:id="tfDatos" layoutX="68.0" layoutY="259.0" onKeyTyped="#actDatos" prefHeight="258.0" prefWidth="424.0" />
+        <TextField fx:id="url" layoutX="698.0" layoutY="473.0" />
+        <Label layoutX="328.0" layoutY="66.0" text="Género" />
+        <TextField fx:id="tfDni" layoutX="329.0" layoutY="100.0" onKeyTyped="#actNombre" promptText="DNI" />
+
+      
+        <HBox layoutX="379.0" layoutY="66.0" prefHeight="32.0" prefWidth="222.0">
+            <children>
+                <CheckBox fx:id="h" prefHeight="11.0" prefWidth="32.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" text="H" />
+                <CheckBox fx:id="l" prefHeight="7.0" prefWidth="17.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" text="L" />
+                <CheckBox fx:id="g" prefHeight="18.0" prefWidth="26.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" text="G" />
+                <CheckBox fx:id="t" prefHeight="2.0" prefWidth="3.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" text="T" />
+                <CheckBox fx:id="b" prefHeight="2.0" prefWidth="3.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" text="B" />
+                <CheckBox fx:id="i" prefHeight="18.0" prefWidth="128.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" text="I" />
+            </children>
+        </HBox>
+        <Button fx:id="btnGuardar" disable="false" layoutX="505.0" layoutY="259.0" minWidth="52.0" mnemonicParsing="false" onAction="#guardarObjPaciente" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Guardar">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnEliminar" disable="false" layoutX="505.0" layoutY="342.0" minWidth="52.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Eliminar">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnEditar" disable="false" layoutX="505.0" layoutY="299.0" minWidth="52.0" mnemonicParsing="false" onAction="#editar" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Editar">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnBuscar" disable="false" layoutX="505.0" layoutY="387.0" minWidth="52.0" mnemonicParsing="false" onAction="#buscarObjPaciente" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Buscar">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+      <Button fx:id="btnLimpiar" layoutX="505.0" layoutY="473.0" mnemonicParsing="false" onAction="#limpiarPantalla" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Limpiar" />
+      <Slider fx:id="srAltura" layoutX="601.0" layoutY="106.0" prefHeight="16.0" prefWidth="258.0" />
+      <Slider fx:id="srPeso" layoutX="601.0" layoutY="156.0" prefHeight="16.0" prefWidth="258.0" />
+      <Label layoutX="626.0" layoutY="133.0" text="Peso Kg" />
+      <Label layoutX="623.0" layoutY="92.0" text="Altura cm" />
+      <TextField fx:id="tfSS" layoutX="329.0" layoutY="150.0" promptText="NºSS" />
+    </children>
+</AnchorPane>

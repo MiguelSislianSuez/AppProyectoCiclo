@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="registro" prefHeight="361.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.LoginController">
+    <children>
+        <TextField fx:id="txtUsuario" layoutX="515.0" layoutY="135.0" promptText="Nombre" />
+        <Label layoutX="434.0" layoutY="140.0" text="Usuario" />
+        <PasswordField fx:id="txtPass" layoutX="515.0" layoutY="212.0" promptText="Contraseña" />
+        <Label layoutX="437.0" layoutY="217.0" text="Password" />
+
+        <Button fx:id="btnLogin" layoutX="515.0" layoutY="252.0" mnemonicParsing="false" onAction="#comprobarLog" prefHeight="12.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Entrar" />
+        <Button fx:id="btnRegistro" layoutX="606.0" layoutY="252.0" mnemonicParsing="false" onAction="#registro" prefHeight="27.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Nuevo" />
+
+        <ImageView fitHeight="216.0" fitWidth="216.0" layoutX="192.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../img/reg.png" />
+            </image>
+        </ImageView>
+      
+    </children>  
+</AnchorPane>

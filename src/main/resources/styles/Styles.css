@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 feb. 2021, 13:48:49
+    Author     : Kentucky
+*/
+
+.root{
+
+       
+    -fx-base: #82E0AA;
+    -fx-accent: #F9E79F ;
+    -fx-default-button: #D5F5E3 ;
+    -fx-focus-color: #7DCEA0;
+    -fx-faint-focus-color: #FCF3CF;
+    
+}

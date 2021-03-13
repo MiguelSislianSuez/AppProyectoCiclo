@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="registroUsuario" prefHeight="411.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.RegistroUsuariosController">
+   
+    <children>
+        <TextField fx:id="txtApellido1" layoutX="437.0" layoutY="128.0" promptText="Primer Apellido" />
+        <TextField fx:id="txtNombre" layoutX="437.0" layoutY="83.0" promptText="Nombre" />
+        <TextField fx:id="txtApellido2" layoutX="437.0" layoutY="171.0" promptText="Segundo Apellido" />
+        <DatePicker fx:id="nacimiento" layoutX="437.0" layoutY="213.0" promptText="Año de nacimiento" />
+        <PasswordField fx:id="userPass" layoutX="437.0" layoutY="256.0" promptText="Contraseña" />
+
+        
+        <Button fx:id="btnCancelar" layoutX="531.0" layoutY="307.0" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-radius: 100;" text="Cancelar" />
+        <Button fx:id="btnCrear" layoutX="437.0" layoutY="307.0" mnemonicParsing="false" onAction="#registrar" prefHeight="27.0" prefWidth="67.0" style="-fx-background-radius: 100;" text="Crear" />
+        
+        <ImageView fitHeight="213.0" fitWidth="213.0" layoutX="205.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../img/unnamed.png" /><!--todos los iconos utilizados son de stock de libre uso-->
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
