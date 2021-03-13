@@ -14,11 +14,13 @@ import java.time.LocalDate;
 public class TablaPacientes {
 
     private int id;
-    private String dni, noSS, email;
+    private String dni, noSS, email, telefono;
     private LocalDate anio;
 
     private String nombre, apellido, datos;
     private String url;
+    private double peso;
+    private double altura;
     private boolean h, l, g, t, b, i;
     private String generos;
 
@@ -52,6 +54,30 @@ public class TablaPacientes {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
     }
     
     

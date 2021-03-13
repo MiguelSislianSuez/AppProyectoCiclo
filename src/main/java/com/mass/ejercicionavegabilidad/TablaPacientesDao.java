@@ -38,7 +38,9 @@ public class TablaPacientesDao {
                     + " nombre VARCHAR (255), "
                     + " apellido VARCHAR (255), "
                     + " dni VARCHAR (255), "
-                    
+                    + " email VARCHAR (255), "
+                    + " no_ss VARCHAR (255), "
+                    + " telefono VARCHAR (255), "
                     + " anio DATE, "
                     + " url VARCHAR (10000),"
                     + " datos VARCHAR (255),"
@@ -75,6 +77,9 @@ public class TablaPacientesDao {
                 paciente.setNombre(resultSet.getString("nombre"));
                 paciente.setApellido(resultSet.getString("apellido"));
                 paciente.setDni(resultSet.getString("dni"));
+                paciente.setEmail(resultSet.getString("email"));
+                paciente.setNoSS(resultSet.getString("no_ss"));
+                paciente.setTelefono(resultSet.getString("telefono"));
                 paciente.setAnio((resultSet.getDate("anio")).toLocalDate());
                 paciente.setUrl(resultSet.getString("url"));
                 paciente.setDatos(resultSet.getString("datos"));
@@ -106,18 +111,21 @@ public class TablaPacientesDao {
         java.sql.Date sqlDate = java.sql.Date.valueOf(ld);
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
-            String sql = "INSERT INTO pacientes (nombre, dni, apellido, anio, url, datos, h, l ,g, t, b, i)"
-                    + "VALUES ('" + paciente.getNombre() 
-                    + "', '" + paciente.getDni() 
-                    + "', '" + paciente.getApellido() 
+            String sql = "INSERT INTO pacientes (nombre, apellido, dni, email, no_ss, telefono, anio, url, datos, h, l ,g, t, b, i)"
+                    + "VALUES ('" + paciente.getNombre()
+                    + "', '" + paciente.getApellido()
+                    + "', '" + paciente.getDni()
+                    + "', '" + paciente.getEmail()
+                    + "', '" + paciente.getNoSS()
+                    + "', '" + paciente.getTelefono()
                     + "', '" + sqlDate
-                    + "', '" + paciente.getUrl() 
-                    + "', '" + paciente.getDatos() 
-                    + "', " + paciente.isH() 
-                    + " , " + paciente.isL() 
-                    + " , " + paciente.isG() 
-                    + " , " + paciente.isT() 
-                    + " , " + paciente.isB() 
+                    + "', '" + paciente.getUrl()
+                    + "', '" + paciente.getDatos()
+                    + "', " + paciente.isH()
+                    + " , " + paciente.isL()
+                    + " , " + paciente.isG()
+                    + " , " + paciente.isT()
+                    + " , " + paciente.isB()
                     + " , " + paciente.isI() + ")";
 
             //ejecutamos la consulta
@@ -134,7 +142,7 @@ public class TablaPacientesDao {
 
         int[][] rellenarGrafico = new int[100][2];
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
-            
+
             Statement statement = conexionDatabase.createStatement();
             String sql = "SELECT year(anio) AS year, COUNT(*) AS num_pacientes FROM pacientes GROUP BY year(anio) ORDER BY year(anio)";
             //guardar en en mia mtriz las filas y columnas y llamarlas desde la clase GRafica
@@ -142,15 +150,14 @@ public class TablaPacientesDao {
             //statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
             int contador = 0;
-            
+
             while (rs.next()) {
-                rellenarGrafico[contador][0] = rs.getInt(1); 
+                rellenarGrafico[contador][0] = rs.getInt(1);
                 rellenarGrafico[contador][1] = rs.getInt(2);
-                
+
                 contador++;
-                
-               
-                System.out.println("Año" + rs.getInt(1)+ "|Pacientes: " + rs.getString(2)+ "\r\n");
+
+                System.out.println("Año" + rs.getInt(1) + "|Pacientes: " + rs.getString(2) + "\r\n");
             }
 
             System.out.println("Información extraida correctamente");
@@ -169,13 +176,26 @@ public class TablaPacientesDao {
         try (Connection conexionDatabase
                 = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
-            String sql = "UPDATE pacientes SET nombre='" + paciente.getNombre() + "', dni='" + paciente.getDni() + "', apellido='" + paciente.getApellido() + "', anio='"
-                    + sqlDate + "', datos='" + paciente.getDatos() + "', h=" + paciente.isH() + ", l=" + paciente.isL() + ", g=" + paciente.isG()
-                    + ", t=" + paciente.isT() + ", b=" + paciente.isB() + ", i=" + paciente.isI() + " WHERE id=" + paciente.getId();
+            String sql = "UPDATE pacientes SET nombre='" + paciente.getNombre()
+                    + "', apellido='" + paciente.getApellido()
+                    + "', ='" + paciente.getApellido()
+                    + "', dni='" + paciente.getDni()
+                    + "', email='" + paciente.getEmail()
+                    + "', no_ss='" + paciente.getNoSS()
+                    + "', telefono='" + paciente.getTelefono()
+                    + "', anio='" + sqlDate
+                    + "', datos='" + paciente.getDatos()
+                    + "', h=" + paciente.isH()
+                    + ", l=" + paciente.isL()
+                    + ", g=" + paciente.isG()
+                    + ", t=" + paciente.isT()
+                    + ", b=" + paciente.isB()
+                    + ", i=" + paciente.isI()
+                    + " WHERE id=" + paciente.getId();
             statement.executeUpdate(sql);
 
         } catch (Exception e) {
-            throw new RuntimeException("Ocurrido un error al guardar información: " + e.getMessage());
+            throw new RuntimeException("Ocurrido un error al actualizar información: " + e.getMessage());
         }
 
     }
@@ -186,7 +206,7 @@ public class TablaPacientesDao {
             String sql = "DELETE FROM pacientes WHERE id = " + paciente.getId();
             statement.executeUpdate(sql);
         } catch (Exception e) {
-            throw new RuntimeException("Ocurrido un error al guardar información: " + e.getMessage());
+            throw new RuntimeException("Ocurrido un error al eliminar información: " + e.getMessage());
         }
 
     }
@@ -213,9 +233,13 @@ public class TablaPacientesDao {
 
                 TablaPacientes paciente = new TablaPacientes();
                 paciente.setId(resultSet.getInt("id"));
-                paciente.setDni(resultSet.getNString("dni"));
+
                 paciente.setNombre(resultSet.getString("nombre"));
                 paciente.setApellido(resultSet.getString("apellido"));
+                paciente.setDni(resultSet.getNString("dni"));
+                paciente.setEmail(resultSet.getString("email"));
+                paciente.setNoSS(resultSet.getNString("no_ss"));
+                paciente.setTelefono(resultSet.getString("telefono"));
                 paciente.setAnio((resultSet.getDate("anio")).toLocalDate());
                 paciente.setUrl(resultSet.getString("url"));
                 paciente.setDatos(resultSet.getString("datos"));

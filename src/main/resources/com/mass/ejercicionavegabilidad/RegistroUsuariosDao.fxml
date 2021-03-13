@@ -18,7 +18,7 @@
         <PasswordField fx:id="userPass" layoutX="437.0" layoutY="256.0" promptText="Contraseña" />
 
         
-        <Button fx:id="btnCancelar" layoutX="531.0" layoutY="307.0" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-radius: 100;" text="Cancelar" />
+        <Button fx:id="btnCancelar" layoutX="531.0" layoutY="307.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="27.0" prefWidth="67.0" style="-fx-background-radius: 100;" text="Volver" />
         <Button fx:id="btnCrear" layoutX="437.0" layoutY="307.0" mnemonicParsing="false" onAction="#registrar" prefHeight="27.0" prefWidth="67.0" style="-fx-background-radius: 100;" text="Crear" />
         
         <ImageView fitHeight="213.0" fitWidth="213.0" layoutX="205.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">

@@ -12,14 +12,22 @@
     <children>
    <TableView fx:id="tablaPacientes" layoutX="11.0" layoutY="275.0" prefHeight="366.0" prefWidth="939.0">
          <columns>
-            <TableColumn text="id">
+            
+             <TableColumn text="id">
                <cellValueFactory>
                   <PropertyValueFactory property="id" />
                </cellValueFactory>
             </TableColumn>
+            
             <TableColumn text="nombre">
                <cellValueFactory>
                   <PropertyValueFactory property="nombre" />
+               </cellValueFactory>
+            </TableColumn>
+            
+            <TableColumn text="apellido">
+               <cellValueFactory>
+                  <PropertyValueFactory property="apellido" />
                </cellValueFactory>
             </TableColumn>
             
@@ -29,26 +37,43 @@
                </cellValueFactory>
             </TableColumn>
             
-            <TableColumn text="apellido">
-               <cellValueFactory>
-                  <PropertyValueFactory property="apellido" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn text="año">
+            <TableColumn text="nacimiento">
                <cellValueFactory>
                   <PropertyValueFactory property="anio" />
                </cellValueFactory>
             </TableColumn>
+            
+            <TableColumn text="email">
+               <cellValueFactory>
+                  <PropertyValueFactory property="email" />
+               </cellValueFactory>
+            </TableColumn>
+            
+            <TableColumn text="nºS.Social">
+               <cellValueFactory>
+                  <PropertyValueFactory property="noSS" />
+               </cellValueFactory>
+            </TableColumn>
+            
+            <TableColumn text="teléfono">
+               <cellValueFactory>
+                  <PropertyValueFactory property="telefono" />
+               </cellValueFactory>
+            </TableColumn>
+            
+            
             <TableColumn text="datos">
                <cellValueFactory>
                   <PropertyValueFactory property="datos" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn text="Género">
+            
+            <TableColumn text="género">
                <cellValueFactory>
                   <PropertyValueFactory property="generos" />
                </cellValueFactory>
             </TableColumn>
+            
          </columns>
       </TableView>
         <Button fx:id="secondaryButton" onAction="#mostrarPantalla" text="Volver">

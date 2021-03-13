@@ -19,7 +19,7 @@ import javafx.scene.control.TableView;
  *
  * @author Kentucky
  */
-public class ControladorPantallaB extends ControladorConNavegabilidad implements Initializable{
+public class ControladorPantallaB extends ControladorConNavegabilidad implements Initializable {
 
     @FXML
     private TableView<TablaPacientes> tablaPacientes;
@@ -28,32 +28,31 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
     @FXML
     private Button grafica;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Se actualizan los pacientes");
+        cargarPacientes();
+
+    }
+
+    public void cargarPacientes() {
+
+        TablaPacientesDao pacientesDao = new TablaPacientesDao();
+        ObservableList<TablaPacientes> pacientesDB = pacientesDao.cargarPacientesDB();
+        this.tablaPacientes.setItems(pacientesDB);
+
+    }
+
     @FXML
     public void mostrarPantalla() {
         this.layout.mostrarComoPantallaActual("a");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Se actualizan los pacientes");
-        cargarPacientes();
-        
-    }
-    
-    public void cargarPacientes(){
-        
-        TablaPacientesDao pacientesDao = new TablaPacientesDao();
-        ObservableList<TablaPacientes> pacientesDB = pacientesDao.cargarPacientesDB();
-        this.tablaPacientes.setItems(pacientesDB);
-        
-    }
-
     @FXML
     private void mostrarGrafica(ActionEvent event) {
-        
+
         this.layout.mostrarComoPantallaActual("grafica");
-        
-        
+
     }
-    
+
 }

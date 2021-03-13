@@ -36,16 +36,27 @@ import javafx.scene.input.KeyEvent;
 public class ControladorPantallaA extends ControladorConNavegabilidad implements Initializable {
 
     @FXML
-    private Button btnA;
-    @FXML
     private TextField tfNombre;
     private boolean bNombre = false;
-
-    private TablaPacientes pacienteSeleccionado;
 
     @FXML
     private TextField tfApellido;
     private boolean bApellido = false;
+
+    @FXML
+    private TextField tfDni;
+    private boolean bDni = false;
+
+    @FXML
+    private TextField tfSS;
+    private boolean bSs = false;
+
+    @FXML
+    private TextField tfTlf;
+    private boolean bTlf = false;
+    @FXML
+    private TextField tfEmail;
+    private boolean bEmail = false;
 
     @FXML
     private DatePicker anio;
@@ -70,9 +81,11 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     private CheckBox b;
     @FXML
     private CheckBox i;
+
     @FXML
     private Button btnGuardar;
-
+    @FXML
+    private Button btnA;
     @FXML
     private Button btnEliminar;
     @FXML
@@ -80,9 +93,6 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
 
     @FXML
     private Button btnBuscar;
-
-    @FXML
-    private TextField tfDni;
     @FXML
     private Button btnLimpiar;
 
@@ -91,9 +101,8 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     private Slider srAltura;
     @FXML
     private Slider srPeso;
-    @FXML
-    private TextField tfSS;
 
+    private TablaPacientes pacienteSeleccionado;
     int idPacienteSeleccionado = 0;
     TablaPacientesDao dao;
 
@@ -123,7 +132,9 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setNombre(tfNombre.getText());
         paciente.setApellido(tfApellido.getText());
         paciente.setDni(tfDni.getText());
-
+        paciente.setEmail(tfEmail.getText());
+        paciente.setNoSS(tfSS.getText());
+        paciente.setTelefono(tfTlf.getText());
         paciente.setAnio(anio.getValue());
         paciente.setDatos(tfDatos.getText());
 
@@ -145,6 +156,9 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
+        tfEmail.clear();
+        tfSS.clear();
+        tfTlf.clear();
         tfDatos.clear();
         anio.setValue(null);
         h.setSelected(false);
@@ -290,6 +304,9 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
             this.tfApellido.setText(pacienteSeleccionado.getApellido());
             this.tfDatos.setText(pacienteSeleccionado.getDatos());
             this.tfDni.setText(pacienteSeleccionado.getDni());
+            this.tfEmail.setText(pacienteSeleccionado.getEmail());
+            this.tfSS.setText(pacienteSeleccionado.getNoSS());
+            this.tfTlf.setText(pacienteSeleccionado.getTelefono());
             this.anio.setValue(pacienteSeleccionado.getAnio());
             this.h.setSelected(pacienteSeleccionado.isH());
             this.l.setSelected(pacienteSeleccionado.isL());
@@ -304,7 +321,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
             alert.setContentText("Paciente encontrado");
             alert.showAndWait();
 
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Info");
@@ -321,6 +338,9 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
+        tfEmail.clear();
+        tfSS.clear();
+        tfTlf.clear();
         h.setSelected(false);
         l.setSelected(false);
         g.setSelected(false);
