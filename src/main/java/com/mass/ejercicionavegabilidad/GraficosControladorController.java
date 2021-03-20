@@ -5,6 +5,7 @@
  */
 package com.mass.ejercicionavegabilidad;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -26,6 +27,7 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
     private LineChart<?, ?> grafico;
     @FXML
     private Button volver;
+  
 
     /**
      * Initializes the controller class.
@@ -41,7 +43,7 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Number of Month");
         //creating the chart
-        //grafico= new LineChart<Number, Number>(xAxis, yAxis);
+        //grafico = new LineChart<Number, Number>(xAxis, yAxis);
 
         grafico.setTitle("Rango edades de los pacientes");
         //defining a series
@@ -49,7 +51,20 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
         series.setName("IdeaJfxDashboard");
         //populating the series with data
         //llamar a la matrizy recorrer
-        series.getData().add(new XYChart.Data(1, 23));
+        TablaPacientesDao grafica = new TablaPacientesDao();
+        int[][] graficoValor = grafica.rellenarGrafico();
+
+        for (int row = 0; row < graficoValor.length; row++) {
+            //int[][] rellenarGrafico = new int[100][2];
+           
+                //series.getData().add(new XYChart.Data(graficoValor[row], graficoValor[row][col]));
+            //series.getData().add(new XYChart.Data(row, col));
+            series.getData().add(new XYChart.Data(graficoValor[row][0], graficoValor[row][1]));
+            
+
+        }
+
+        /*series.getData().add(new XYChart.Data(1, 23));
         series.getData().add(new XYChart.Data(2, 14));
         series.getData().add(new XYChart.Data(3, 15));
         series.getData().add(new XYChart.Data(4, 24));
@@ -60,9 +75,9 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
         series.getData().add(new XYChart.Data(9, 43));
         series.getData().add(new XYChart.Data(10, 17));
         series.getData().add(new XYChart.Data(11, 29));
-        series.getData().add(new XYChart.Data(12, 25));
-
+        series.getData().add(new XYChart.Data(12, 25));*/
         grafico.getData().add(series);
+
     }
 
     @FXML
@@ -71,4 +86,5 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
 
     }
 
+     
 }

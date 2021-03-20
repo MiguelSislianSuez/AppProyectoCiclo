@@ -6,9 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.GraficosControladorController">
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.GraficosControladorController">
    <children>
-      <LineChart fx:id="grafico" layoutY="14.0" prefHeight="331.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="14.0">
+      <LineChart fx:id="grafico" layoutY="14.0" prefHeight="428.0" prefWidth="923.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
         <xAxis>
           <NumberAxis prefWidth="542.0" side="BOTTOM" />
         </xAxis>
@@ -16,10 +16,11 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Button fx:id="volver" layoutX="307.0" layoutY="374.0" onAction="#mostrarPantalla" prefHeight="28.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Volver">
+      <Button fx:id="volver" layoutX="824.0" layoutY="522.0" onAction="#mostrarPantalla" prefHeight="28.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Volver">
          <graphic>
             <Label />
          </graphic>
       </Button>
+    
    </children>
 </AnchorPane>

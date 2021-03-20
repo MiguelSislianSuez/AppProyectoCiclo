@@ -64,17 +64,19 @@
             </cursor>
         </Button>
       <Button fx:id="btnLimpiar" layoutX="601.0" layoutY="473.0" mnemonicParsing="false" onAction="#limpiarPantalla" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Limpiar" />
-      <Slider fx:id="srAltura" blockIncrement="1.0" layoutX="601.0" layoutY="106.0" majorTickUnit="10.0" max="300.0" prefHeight="38.0" prefWidth="273.0" showTickLabels="true" showTickMarks="true" />
-      <Slider fx:id="srPeso" blockIncrement="1.0" layoutX="601.0" layoutY="156.0" majorTickUnit="50.0" max="500.0" prefHeight="16.0" prefWidth="273.0" showTickLabels="true" showTickMarks="true" />
+      <Slider fx:id="srAltura" blockIncrement="1.0" layoutX="601.0" layoutY="106.0" majorTickUnit="10.0" max="260.0" minorTickCount="9" onDragDetected="#resultadoSlider" onDragDone="#resultadoSlider" onDragEntered="#resultadoSlider" onDragExited="#resultadoSlider" onMouseClicked="#resultadoSlider" onMouseDragExited="#resultadoSlider" onMouseDragOver="#resultadoSlider" onMouseMoved="#resultadoSlider" prefHeight="38.0" prefWidth="273.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Slider fx:id="srPeso" blockIncrement="1.0" layoutX="601.0" layoutY="156.0" majorTickUnit="50.0" max="500.0" minorTickCount="9" onDragExited="#resultadoSlider" onMouseDragExited="#resultadoSlider" onMouseMoved="#resultadoSlider" prefHeight="16.0" prefWidth="273.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Label layoutX="627.0" layoutY="142.0" text="Peso Kg" />
       <Label layoutX="623.0" layoutY="90.0" text="Altura cm" />
       <TextField fx:id="tfSS" layoutX="405.0" layoutY="150.0" promptText="NºSS" />
       <Label layoutX="328.0" layoutY="105.0" prefHeight="17.0" prefWidth="45.0" text="Nº DNI" />
-      <Label layoutX="65.0" layoutY="156.0" text="Label" />
+      <Label layoutX="65.0" layoutY="156.0" text="Año" />
       <Label layoutX="328.0" layoutY="156.0" prefHeight="17.0" prefWidth="66.0" text="Nº S.Social" />
       <Label layoutX="328.0" layoutY="206.0" prefHeight="17.0" prefWidth="66.0" text="Teléfono" />
       <Label layoutX="65.0" layoutY="206.0" text="E-Mail" />
       <TextField fx:id="tfTlf" layoutX="405.0" layoutY="201.0" promptText="Número móvil" />
       <TextField fx:id="tfEmail" layoutX="127.0" layoutY="201.0" prefHeight="27.0" prefWidth="161.0" promptText="Correo electrónico" />
+      <TextField fx:id="tfAltura" editable="false" layoutX="601.0" layoutY="201.0" prefHeight="27.0" prefWidth="66.0" promptText="Altura" />
+      <TextField fx:id="tfPeso" editable="false" layoutX="684.0" layoutY="201.0" prefHeight="27.0" prefWidth="66.0" promptText="Peso" />
     </children>
 </AnchorPane>

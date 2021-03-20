@@ -85,6 +85,9 @@
             <Label />
          </graphic>
       </Button>
+      
+        <Button fx:id="btnPDF" layoutX="676.0" layoutY="523.0" mnemonicParsing="false" onAction="#generarPDF" text="Generar PDF" />
+      
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

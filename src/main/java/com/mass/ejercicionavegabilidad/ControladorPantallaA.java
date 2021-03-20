@@ -105,6 +105,10 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     private TablaPacientes pacienteSeleccionado;
     int idPacienteSeleccionado = 0;
     TablaPacientesDao dao;
+    @FXML
+    private TextField tfAltura;
+    @FXML
+    private TextField tfPeso;
 
     @FXML
     public void mostrarPantalla() {
@@ -153,6 +157,12 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         //cargarPacientesDB();
         //limpiamos campos 
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmación");
+        alert.setContentText("El paciente ha sido guardado correctamente");
+        alert.showAndWait();
+
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
@@ -175,7 +185,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     public void eliminar() {
         //creamos el objeto a partir de los datos de la tabla de la bdd a difernecia del metodo guardar
         TablaPacientes paciente = pacienteSeleccionado;/*.getSelectionModel().getSelectedItem();*///con estos metodos ya recive los datos de la tabla 
-        dao.eliminar(paciente);
+        //dao.eliminar(paciente);
         this.pacienteSeleccionado = null;
         limpiarPantalla(null);
 
@@ -187,9 +197,17 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
 
         // Si hemos pulsado en aceptar
         if (action.get() == ButtonType.OK) {
-            this.txtPedirConfi.setText("Has pulsado en aceptar");
+            dao.eliminar(paciente);
+
+            Alert alertConfirmar = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmación");
+            alert.setContentText("El paciente se ha borrado correctamente");
         } else {
-            this.txtPedirConfi.setText("Has pulsado en cancelar");
+            Alert alertCancelar = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmación");
+            alert.setContentText("El paciente nose ha borrado");
         }
 
         //cargarPacientesDB();
@@ -198,24 +216,33 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     @FXML
     public void editar() {
         TablaPacientes paciente = pacienteSeleccionado;
-        dao.actualizar(paciente);
 
-        //obtenemos objeto de la tabla y lo pone en el fxml
-        //Solo queremos que nos muestre los datos
-        /*TablaPacientes paciente = tablaPacientes.getSelectionModel().getSelectedItem();
-        tfNombre.setText(paciente.getNombre());
-        tfApellido.setText(paciente.getApellido());
-        anio.setValue(paciente.getAnio());
-        tfDatos.setText(paciente.getDatos());
+        paciente.setNombre(tfNombre.getText());
+        paciente.setApellido(tfApellido.getText());
+        paciente.setDni(tfDni.getText());
+        paciente.setEmail(tfEmail.getText());
+        paciente.setNoSS(tfSS.getText());
+        paciente.setTelefono(tfTlf.getText());
+        paciente.setAnio(anio.getValue());
+        paciente.setDatos(tfDatos.getText());
 
-        h.setSelected(paciente.isH());
-        l.setSelected(paciente.isL());
-        g.setSelected(paciente.isG());
-        t.setSelected(paciente.isT());
-        b.setSelected(paciente.isB());
-        i.setSelected(paciente.isI());
+        paciente.setH(h.isSelected());
+        paciente.setL(l.isSelected());
+        paciente.setG(g.isSelected());
+        paciente.setT(t.isSelected());
+        paciente.setB(b.isSelected());
+        paciente.setI(i.isSelected());
+        //paciente.setId(idPacienteSeleccionado);
+        paciente.setUrl(url.getText());
         idPacienteSeleccionado = paciente.getId();
-        url.setText(paciente.getUrl());
+
+        dao.actualizar(paciente);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmación");
+        alert.setContentText("El paciente ha sido editado correctamente");
+        alert.showAndWait();
+        /*url.setText(paciente.getUrl());
         //condicion para imagenes por defecto
         Image img;
         if (paciente.getUrl() != null && !paciente.getUrl().equals("")) {
@@ -349,7 +376,16 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         i.setSelected(false);
         anio.setValue(null);
         tfDatos.clear();
+        tfAltura.clear();
+        tfPeso.clear();
         url.clear();
 
+    }
+
+    @FXML
+    public void resultadoSlider() {
+        tfAltura.setText((Math.floor(srAltura.getValue() * 100) / 100) + "");
+        tfPeso.setText((Math.floor(srPeso.getValue() * 100) / 100) + "");
+        //System.out.println(srAltura.getValue());
     }
 }

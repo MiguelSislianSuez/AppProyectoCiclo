@@ -12,11 +12,11 @@
     <children>
         <TextField fx:id="txtUsuario" layoutX="515.0" layoutY="135.0" promptText="Nombre" />
         <Label layoutX="434.0" layoutY="140.0" text="Usuario" />
-        <PasswordField fx:id="txtPass" layoutX="515.0" layoutY="212.0" promptText="Contraseña" />
-        <Label layoutX="437.0" layoutY="217.0" text="Password" />
+        <PasswordField fx:id="txtPass" layoutX="515.0" layoutY="181.0" promptText="Contraseña" />
+        <Label layoutX="437.0" layoutY="186.0" text="Password" />
 
-        <Button fx:id="btnLogin" layoutX="515.0" layoutY="252.0" mnemonicParsing="false" onAction="#comprobarLog" prefHeight="12.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Entrar" />
-        <Button fx:id="btnRegistro" layoutX="606.0" layoutY="252.0" mnemonicParsing="false" onAction="#registro" prefHeight="27.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Nuevo" />
+        <Button fx:id="btnLogin" layoutX="515.0" layoutY="221.0" mnemonicParsing="false" onAction="#comprobarLog" prefHeight="12.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Entrar" />
+        <Button fx:id="btnRegistro" layoutX="606.0" layoutY="221.0" mnemonicParsing="false" onAction="#registro" prefHeight="27.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Nuevo" />
 
         <ImageView fitHeight="216.0" fitWidth="216.0" layoutX="192.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
             <image>

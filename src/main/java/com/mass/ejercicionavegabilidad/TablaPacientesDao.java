@@ -139,8 +139,10 @@ public class TablaPacientesDao {
     }
 
     public int[][] rellenarGrafico() {
+        
+        //ArrayList<ArrayList<Integer>> rellenaGrafico = new ArrayList<>();
 
-        int[][] rellenarGrafico = new int[100][2];
+        int[][] rellenarGrafico = new int[5][2];
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
 
             Statement statement = conexionDatabase.createStatement();
@@ -165,7 +167,7 @@ public class TablaPacientesDao {
         } catch (Exception e) {
             throw new RuntimeException("Ocurrido un error al guardar información: " + e.getMessage());
         }
-        return null;
+        return rellenarGrafico;
     }
 
     public void actualizar(TablaPacientes paciente) {
@@ -178,7 +180,6 @@ public class TablaPacientesDao {
             Statement statement = conexionDatabase.createStatement();
             String sql = "UPDATE pacientes SET nombre='" + paciente.getNombre()
                     + "', apellido='" + paciente.getApellido()
-                    + "', ='" + paciente.getApellido()
                     + "', dni='" + paciente.getDni()
                     + "', email='" + paciente.getEmail()
                     + "', no_ss='" + paciente.getNoSS()
@@ -192,18 +193,22 @@ public class TablaPacientesDao {
                     + ", b=" + paciente.isB()
                     + ", i=" + paciente.isI()
                     + " WHERE id=" + paciente.getId();
+            System.out.println("CONSULTA" + sql);
+                    
             statement.executeUpdate(sql);
 
         } catch (Exception e) {
             throw new RuntimeException("Ocurrido un error al actualizar información: " + e.getMessage());
         }
 
+        
     }
 
     public void eliminar(TablaPacientes paciente) {
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
             String sql = "DELETE FROM pacientes WHERE id = " + paciente.getId();
+            System.out.println("MOSTRAR CONSULTA " +sql);
             statement.executeUpdate(sql);
         } catch (Exception e) {
             throw new RuntimeException("Ocurrido un error al eliminar información: " + e.getMessage());
