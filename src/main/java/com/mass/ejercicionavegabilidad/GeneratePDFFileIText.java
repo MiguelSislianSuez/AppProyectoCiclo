@@ -43,14 +43,6 @@ public class GeneratePDFFileIText {
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-    //private static final String iTextExampleImage = "/home/xules/codigoxules/iText-Example-image.png";
-    /**
-     * Creamos un documento PDF con iText usando diferentes
-     * elementos para aprender a usar esta librería.
-     *
-     * @param pdfNewFile  <code>String</code> pdf File we are going to write.
-     * Fichero pdf en el que vamos a escribir.
-     */
     
     public void createPDF(File pdfNewFile, ObservableList<TablaPacientes> pacientesDB) {
         // We create the document and set the file name.        

@@ -65,6 +65,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     private boolean bDatos = false;
 
     // private TableView<TablaPacientes> tablaPacientes;
+    @FXML
     ImageView imagen;
 
     @FXML
@@ -102,9 +103,6 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     @FXML
     private Slider srPeso;
 
-    private TablaPacientes pacienteSeleccionado;
-    int idPacienteSeleccionado = 0;
-    TablaPacientesDao dao;
     @FXML
     private TextField tfAltura;
     @FXML
@@ -116,6 +114,10 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         pantalla.cargarPacientes();
 
     }
+
+    private TablaPacientes pacienteSeleccionado;
+    int idPacienteSeleccionado = 0;
+    TablaPacientesDao dao;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -136,6 +138,10 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setNombre(tfNombre.getText());
         paciente.setApellido(tfApellido.getText());
         paciente.setDni(tfDni.getText());
+        //paciente.setPeso(Double.parseDouble(tfPeso.getText()));
+        //paciente.setAltura(Double.parseDouble(tfAltura.getText()));
+        paciente.setPeso(srPeso.getValue());
+        paciente.setAltura(srAltura.getValue());
         paciente.setEmail(tfEmail.getText());
         paciente.setNoSS(tfSS.getText());
         paciente.setTelefono(tfTlf.getText());
@@ -166,6 +172,8 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
+        tfPeso.clear();
+        tfAltura.clear();
         tfEmail.clear();
         tfSS.clear();
         tfTlf.clear();
@@ -220,7 +228,9 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setNombre(tfNombre.getText());
         paciente.setApellido(tfApellido.getText());
         paciente.setDni(tfDni.getText());
-        paciente.setEmail(tfEmail.getText());
+        paciente.setPeso(srPeso.getValue());
+        paciente.setAltura(srAltura.getValue());
+        //paciente.setEmail(tfEmail.getText());
         paciente.setNoSS(tfSS.getText());
         paciente.setTelefono(tfTlf.getText());
         paciente.setAnio(anio.getValue());
@@ -234,6 +244,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setI(i.isSelected());
         //paciente.setId(idPacienteSeleccionado);
         paciente.setUrl(url.getText());
+
         idPacienteSeleccionado = paciente.getId();
 
         dao.actualizar(paciente);
@@ -242,18 +253,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         alert.setTitle("Confirmación");
         alert.setContentText("El paciente ha sido editado correctamente");
         alert.showAndWait();
-        /*url.setText(paciente.getUrl());
-        //condicion para imagenes por defecto
-        Image img;
-        if (paciente.getUrl() != null && !paciente.getUrl().equals("")) {
-            //System.out.println(paciente.getUrl());
-            img = new Image(paciente.getUrl());
-        } else {
-            img = new Image("/img/not.png");
-        }
 
-        imagen.setImage(img);*/
-        //cargarPacientesDB();
     }
 
     /* private void cargarPacientesDB() {
@@ -331,6 +331,10 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
             this.tfApellido.setText(pacienteSeleccionado.getApellido());
             this.tfDatos.setText(pacienteSeleccionado.getDatos());
             this.tfDni.setText(pacienteSeleccionado.getDni());
+            this.tfPeso.setText(pacienteSeleccionado.getPeso() + "");
+            this.tfAltura.setText(pacienteSeleccionado.getAltura() + "");
+            this.srPeso.setValue(pacienteSeleccionado.getPeso());
+            this.srAltura.setValue(pacienteSeleccionado.getAltura());
             this.tfEmail.setText(pacienteSeleccionado.getEmail());
             this.tfSS.setText(pacienteSeleccionado.getNoSS());
             this.tfTlf.setText(pacienteSeleccionado.getTelefono());
@@ -341,6 +345,20 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
             this.t.setSelected(pacienteSeleccionado.isT());
             this.b.setSelected(pacienteSeleccionado.isB());
             this.i.setSelected(pacienteSeleccionado.isI());
+            this.url.setText(pacienteSeleccionado.getUrl());
+
+            url.setText(pacienteSeleccionado.getUrl());
+            //condicion para imagenes por defecto
+            Image img;
+            if (pacienteSeleccionado.getUrl() != null && !pacienteSeleccionado.getUrl().equals("")) {
+                //System.out.println(paciente.getUrl());
+                img = new Image(pacienteSeleccionado.getUrl());
+            } else {
+                img = new Image("/img/not.png");
+            }
+
+            imagen.setImage(img);
+            //cargarPacientesDB();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -365,6 +383,8 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
+        tfPeso.clear();
+        tfAltura.clear();
         tfEmail.clear();
         tfSS.clear();
         tfTlf.clear();

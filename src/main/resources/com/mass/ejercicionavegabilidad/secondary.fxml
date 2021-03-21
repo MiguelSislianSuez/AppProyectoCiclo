@@ -31,7 +31,7 @@
                </cellValueFactory>
             </TableColumn>
             
-            <TableColumn text="dni">
+                  <TableColumn text="dni">
                <cellValueFactory>
                   <PropertyValueFactory property="dni" />
                </cellValueFactory>
@@ -73,6 +73,8 @@
                   <PropertyValueFactory property="generos" />
                </cellValueFactory>
             </TableColumn>
+            <TableColumn prefWidth="75.0" text="altura" />
+            <TableColumn prefWidth="75.0" text="peso" />
             
          </columns>
       </TableView>

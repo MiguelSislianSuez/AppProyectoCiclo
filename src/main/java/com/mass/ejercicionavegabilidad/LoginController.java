@@ -42,11 +42,11 @@ public class LoginController extends ControladorConNavegabilidad implements Init
     @FXML
     private Button btnRegistro;
     
-    RegistroUsuariosDao registroUsuariosDao;
+    
     @FXML
     private AnchorPane registro;
     
-    
+    RegistroUsuariosDao registroUsuariosDao;
 
     /**
      * Initializes the controller class.
@@ -79,6 +79,8 @@ public class LoginController extends ControladorConNavegabilidad implements Init
             alert.showAndWait();
             
             this.layout.mostrarComoPantallaActual("a");
+            txtUsuario.clear();
+            txtPass.clear();
            
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -86,7 +88,8 @@ public class LoginController extends ControladorConNavegabilidad implements Init
             alert.setTitle("Error");
             alert.setContentText("Login incorrecto");
             alert.showAndWait();
-
+            txtUsuario.clear();
+            txtPass.clear();
         }
     }
 

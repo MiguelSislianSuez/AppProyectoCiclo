@@ -38,6 +38,8 @@ public class TablaPacientesDao {
                     + " nombre VARCHAR (255), "
                     + " apellido VARCHAR (255), "
                     + " dni VARCHAR (255), "
+                    + " peso DOUBLE, "
+                    + " altura DOUBLE, "                    
                     + " email VARCHAR (255), "
                     + " no_ss VARCHAR (255), "
                     + " telefono VARCHAR (255), "
@@ -77,6 +79,8 @@ public class TablaPacientesDao {
                 paciente.setNombre(resultSet.getString("nombre"));
                 paciente.setApellido(resultSet.getString("apellido"));
                 paciente.setDni(resultSet.getString("dni"));
+                paciente.setPeso(resultSet.getDouble("peso"));
+                paciente.setAltura(resultSet.getDouble("altura"));
                 paciente.setEmail(resultSet.getString("email"));
                 paciente.setNoSS(resultSet.getString("no_ss"));
                 paciente.setTelefono(resultSet.getString("telefono"));
@@ -111,10 +115,12 @@ public class TablaPacientesDao {
         java.sql.Date sqlDate = java.sql.Date.valueOf(ld);
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
-            String sql = "INSERT INTO pacientes (nombre, apellido, dni, email, no_ss, telefono, anio, url, datos, h, l ,g, t, b, i)"
+            String sql = "INSERT INTO pacientes (nombre, apellido, dni, peso, altura, email, no_ss, telefono, anio, url, datos, h, l ,g, t, b, i)"
                     + "VALUES ('" + paciente.getNombre()
                     + "', '" + paciente.getApellido()
                     + "', '" + paciente.getDni()
+                    + "', '" + paciente.getPeso()
+                    + "', '" + paciente.getAltura()
                     + "', '" + paciente.getEmail()
                     + "', '" + paciente.getNoSS()
                     + "', '" + paciente.getTelefono()
@@ -181,6 +187,8 @@ public class TablaPacientesDao {
             String sql = "UPDATE pacientes SET nombre='" + paciente.getNombre()
                     + "', apellido='" + paciente.getApellido()
                     + "', dni='" + paciente.getDni()
+                    + "', peso='" + paciente.getPeso()
+                    + "', altura='" + paciente.getAltura()
                     + "', email='" + paciente.getEmail()
                     + "', no_ss='" + paciente.getNoSS()
                     + "', telefono='" + paciente.getTelefono()
@@ -242,6 +250,8 @@ public class TablaPacientesDao {
                 paciente.setNombre(resultSet.getString("nombre"));
                 paciente.setApellido(resultSet.getString("apellido"));
                 paciente.setDni(resultSet.getNString("dni"));
+                paciente.setPeso(resultSet.getDouble("peso"));
+                paciente.setAltura(resultSet.getDouble("altura"));
                 paciente.setEmail(resultSet.getString("email"));
                 paciente.setNoSS(resultSet.getNString("no_ss"));
                 paciente.setTelefono(resultSet.getString("telefono"));
