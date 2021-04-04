@@ -43,28 +43,28 @@
        
       
        
-        <Button fx:id="btnA" layoutX="601.0" layoutY="431.0" mnemonicParsing="false" onAction="#mostrarPantalla" style="-fx-background-radius: 100;" text="Pacientes" />
+        <Button fx:id="btnA" layoutX="601.0" layoutY="442.0" mnemonicParsing="false" onAction="#mostrarPantalla" style="-fx-background-radius: 100;" text="Pacientes" />
         <Button fx:id="btnGuardar" disable="false" layoutX="601.0" layoutY="259.0" minWidth="52.0" mnemonicParsing="false" onAction="#guardarObjPaciente" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Guardar">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnEliminar" disable="false" layoutX="601.0" layoutY="342.0" minWidth="52.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Eliminar">
+        <Button fx:id="btnEliminar" disable="false" layoutX="601.0" layoutY="349.0" minWidth="52.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Eliminar">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnEditar" disable="false" layoutX="601.0" layoutY="299.0" minWidth="52.0" mnemonicParsing="false" onAction="#editar" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Editar">
+        <Button fx:id="btnEditar" disable="false" layoutX="601.0" layoutY="303.0" minWidth="52.0" mnemonicParsing="false" onAction="#editar" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Editar">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnBuscar" disable="false" layoutX="601.0" layoutY="387.0" minWidth="52.0" mnemonicParsing="false" onAction="#buscarObjPaciente" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Buscar">
+        <Button fx:id="btnBuscar" disable="false" layoutX="601.0" layoutY="395.0" minWidth="52.0" mnemonicParsing="false" onAction="#buscarObjPaciente" opacity="0.8" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Buscar">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-      <Button fx:id="btnLimpiar" layoutX="601.0" layoutY="473.0" mnemonicParsing="false" onAction="#limpiarPantalla" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Limpiar" />
+      <Button fx:id="btnLimpiar" layoutX="601.0" layoutY="487.0" mnemonicParsing="false" onAction="#limpiarPantalla" prefHeight="27.0" prefWidth="72.0" style="-fx-background-radius: 100;" text="Limpiar" />
       <Slider fx:id="srAltura" blockIncrement="1.0" layoutX="601.0" layoutY="106.0" majorTickUnit="10.0" max="260.0" minorTickCount="9" onDragDetected="#resultadoSlider" onDragDone="#resultadoSlider" onDragEntered="#resultadoSlider" onDragExited="#resultadoSlider" onMouseClicked="#resultadoSlider" onMouseDragExited="#resultadoSlider" onMouseDragOver="#resultadoSlider" onMouseMoved="#resultadoSlider" prefHeight="38.0" prefWidth="273.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Slider fx:id="srPeso" blockIncrement="1.0" layoutX="601.0" layoutY="156.0" majorTickUnit="50.0" max="500.0" minorTickCount="9" onDragExited="#resultadoSlider" onMouseDragExited="#resultadoSlider" onMouseMoved="#resultadoSlider" prefHeight="16.0" prefWidth="273.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Label layoutX="627.0" layoutY="142.0" text="Peso Kg" />

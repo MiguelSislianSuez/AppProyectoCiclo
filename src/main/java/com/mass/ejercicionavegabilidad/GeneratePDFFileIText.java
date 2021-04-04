@@ -43,7 +43,7 @@ public class GeneratePDFFileIText {
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-    
+    private static final String iTextExampleImage = "/controlador/Medicaal.png";
     public void createPDF(File pdfNewFile, ObservableList<TablaPacientes> pacientesDB) {
         // We create the document and set the file name.        
         // Creamos el documento e indicamos el nombre del fichero.
@@ -58,8 +58,15 @@ public class GeneratePDFFileIText {
                 System.out.println("No se encontró el fichero para generar el pdf" + fileNotFoundException);
             }
             document.open();
-            float[] columnWidths = {5, 10, 10, 10, 10, 5, 10, 10, 8, 20};
+            document.addTitle("Lista de pacientes");
+            document.addSubject("Using iText (usando iText)");
+            document.addAuthor("Kentucky");
+            Chunk chunk = new Chunk("This is the title", chapterFont);
+            chunk.setBackground(BaseColor.GRAY);
             
+
+            float[] columnWidths = {5, 10, 10, 10, 10};
+
             PdfPTable table = new PdfPTable(columnWidths);
             table.setSpacingAfter(0);
             table.setSpacingBefore(0);
@@ -68,12 +75,12 @@ public class GeneratePDFFileIText {
             table.addCell("Nombre");
             table.addCell("Apellido");
             table.addCell("Dni");
-            table.addCell("Email");
-            table.addCell("Generos");
-            table.addCell("Telefono");
-            table.addCell("Anio");
+            //table.addCell("Email");
+            //table.addCell("Generos");
+            //table.addCell("Telefono");
+            //table.addCell("Anio");
             table.addCell("NoSS");
-            table.addCell("Datos");
+            //table.addCell("Datos");
 
             for (int aw = 0; aw < pacientesDB.size(); aw++) {
                 TablaPacientes paciente = pacientesDB.get(aw);
@@ -82,12 +89,12 @@ public class GeneratePDFFileIText {
                 table.addCell(paciente.getNombre());
                 table.addCell(paciente.getApellido());
                 table.addCell(paciente.getDni());
-                table.addCell(paciente.getEmail());
-                table.addCell(paciente.getGeneros());
-                table.addCell(paciente.getTelefono());
-                table.addCell(paciente.getAnio() + "");
+                //table.addCell(paciente.getEmail());
+                //table.addCell(paciente.getGeneros());
+                //table.addCell(paciente.getTelefono());
+                //table.addCell(paciente.getAnio() + "");
                 table.addCell(paciente.getNoSS());
-                table.addCell(paciente.getDatos());
+                //table.addCell(paciente.getDatos());
 
             }
             document.add(table);

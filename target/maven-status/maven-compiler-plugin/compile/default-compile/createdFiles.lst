@@ -12,4 +12,5 @@ com/mass/ejercicionavegabilidad/TablaPacientes.class
 com/mass/ejercicionavegabilidad/Usuario.class
 com/mass/ejercicionavegabilidad/App.class
 com/mass/ejercicionavegabilidad/TablaPacientesDao.class
+com/mass/ejercicionavegabilidad/ValorGrafica.class
 com/mass/ejercicionavegabilidad/ParametrosConexion.class

@@ -6,6 +6,7 @@
 package com.mass.ejercicionavegabilidad;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,8 +23,19 @@ public class TablaPacientes {
     private double peso;
     private double altura;
     private boolean h, l, g, t, b, i;
+    //private ArrayList<String> generos_2;
     private String generos;
 
+    public TablaPacientes() {
+   //     this.generos_2 = new ArrayList<>();
+        
+    }
+
+    public void anadirGenero(String genero){
+        
+     //   this.generos_2.add(genero);
+    }
+    
     public int getId() {
         return id;
     }
@@ -197,6 +209,27 @@ public class TablaPacientes {
         }
         return generos;
     }
+
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TablaPacientes other = (TablaPacientes) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -78,17 +78,17 @@
             
          </columns>
       </TableView>
-        <Button fx:id="secondaryButton" onAction="#mostrarPantalla" text="Volver">
+        <Button fx:id="secondaryButton" onAction="#mostrarPantalla" style="-fx-background-radius: 100;" text="Volver">
          <graphic>
               <Label />
          </graphic></Button>
-      <Button fx:id="grafica" onAction="#mostrarGrafica" text="Grafica">
+      <Button fx:id="grafica" onAction="#mostrarGrafica" style="-fx-background-radius: 100;" text="Grafica">
          <graphic>
             <Label />
          </graphic>
       </Button>
       
-        <Button fx:id="btnPDF" layoutX="676.0" layoutY="523.0" mnemonicParsing="false" onAction="#generarPDF" text="Generar PDF" />
+        <Button fx:id="btnPDF" layoutX="676.0" layoutY="523.0" mnemonicParsing="false" onAction="#generarPDF" style="-fx-background-radius: 100;" text="Generar PDF" />
       
     </children>
     <padding>

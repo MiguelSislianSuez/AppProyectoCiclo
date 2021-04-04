@@ -10,13 +10,13 @@
    <children>
       <LineChart fx:id="grafico" layoutY="14.0" prefHeight="428.0" prefWidth="923.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
         <xAxis>
-          <NumberAxis prefWidth="542.0" side="BOTTOM" />
+          <NumberAxis forceZeroInRange="false" lowerBound="1900.0" prefWidth="542.0" side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Button fx:id="volver" layoutX="824.0" layoutY="522.0" onAction="#mostrarPantalla" prefHeight="28.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Volver">
+      <Button fx:id="volver" layoutX="427.0" layoutY="468.0" onAction="#mostrarPantalla" prefHeight="28.0" prefWidth="70.0" style="-fx-background-radius: 100;" text="Volver">
          <graphic>
             <Label />
          </graphic>

@@ -39,13 +39,18 @@ public class TablaPacientesDao {
                     + " apellido VARCHAR (255), "
                     + " dni VARCHAR (255), "
                     + " peso DOUBLE, "
-                    + " altura DOUBLE, "                    
+                    + " altura DOUBLE, "
                     + " email VARCHAR (255), "
                     + " no_ss VARCHAR (255), "
                     + " telefono VARCHAR (255), "
                     + " anio DATE, "
                     + " url VARCHAR (10000),"
-                    + " datos VARCHAR (255),"
+                    + " datos VARCHAR (255))";
+
+            statement.executeUpdate(sql);
+
+            String sql2 = "CREATE TABLE IF NOT EXISTS orientaciones"
+                    + "(id_paciente INTEGER auto_increment, "
                     + " h BOOLEAN,"
                     + " l BOOLEAN,"
                     + " g BOOLEAN,"
@@ -53,7 +58,7 @@ public class TablaPacientesDao {
                     + " b BOOLEAN,"
                     + " i BOOLEAN)";
 
-            statement.executeUpdate(sql);
+            statement.executeUpdate(sql2);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +73,7 @@ public class TablaPacientesDao {
         try (Connection conexionDatabase
                 = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
-            String sql = "SELECT * FROM pacientes WHERE dni = '" + dni + "'";
+            String sql = "SELECT * FROM pacientes p INNER JOIN orientaciones o WHERE p.id = o.id_paciente AND dni = '" + dni + "'";
             ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
@@ -115,7 +120,7 @@ public class TablaPacientesDao {
         java.sql.Date sqlDate = java.sql.Date.valueOf(ld);
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
-            String sql = "INSERT INTO pacientes (nombre, apellido, dni, peso, altura, email, no_ss, telefono, anio, url, datos, h, l ,g, t, b, i)"
+            String sql = "INSERT INTO pacientes (nombre, apellido, dni, peso, altura, email, no_ss, telefono, anio, url, datos)"
                     + "VALUES ('" + paciente.getNombre()
                     + "', '" + paciente.getApellido()
                     + "', '" + paciente.getDni()
@@ -126,16 +131,35 @@ public class TablaPacientesDao {
                     + "', '" + paciente.getTelefono()
                     + "', '" + sqlDate
                     + "', '" + paciente.getUrl()
-                    + "', '" + paciente.getDatos()
-                    + "', " + paciente.isH()
-                    + " , " + paciente.isL()
-                    + " , " + paciente.isG()
-                    + " , " + paciente.isT()
-                    + " , " + paciente.isB()
-                    + " , " + paciente.isI() + ")";
+                    + "', '" + paciente.getDatos() + "')";
 
+            System.out.println("SQL 1" + sql);
             //ejecutamos la consulta
             statement.executeUpdate(sql);
+
+            Statement statement2 = conexionDatabase.createStatement();
+            sql = "SELECT MAX (id) AS last_id FROM pacientes";
+            ResultSet rs2 = statement2.executeQuery(sql);
+            if (rs2.next()) {
+                int id = rs2.getInt("last_id");
+
+                System.out.println("ESTE ES EL ID " + id);
+
+                Statement statement3 = conexionDatabase.createStatement();
+
+                sql = "INSERT INTO orientaciones (id_paciente, h, l ,g, t, b, i)"
+                        + "VALUES (" + id
+                        + ", " + paciente.isH()
+                        + " , " + paciente.isL()
+                        + " , " + paciente.isG()
+                        + " , " + paciente.isT()
+                        + " , " + paciente.isB()
+                        + " , " + paciente.isI() + ")";
+                System.out.println("SQL 2" + sql);
+
+                statement3.executeUpdate(sql);
+            }
+
             System.out.println("Información guardada en la base de datos H2");
 
         } catch (Exception e) {
@@ -144,11 +168,11 @@ public class TablaPacientesDao {
 
     }
 
-    public int[][] rellenarGrafico() {
-        
-        //ArrayList<ArrayList<Integer>> rellenaGrafico = new ArrayList<>();
+    public ArrayList<ValorGrafica> rellenarGrafico() {
 
-        int[][] rellenarGrafico = new int[5][2];
+        ArrayList<ValorGrafica> rellenaGrafico = new ArrayList<>();
+
+        //int[][] rellenarGrafico = new int[100][2];
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
 
             Statement statement = conexionDatabase.createStatement();
@@ -157,12 +181,15 @@ public class TablaPacientesDao {
             //ejecutamos la consulta
             //statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
+
             int contador = 0;
 
             while (rs.next()) {
-                rellenarGrafico[contador][0] = rs.getInt(1);
-                rellenarGrafico[contador][1] = rs.getInt(2);
+                ValorGrafica valorGrafica = new ValorGrafica(rs.getInt(1), rs.getInt(2));
+                rellenaGrafico.add(valorGrafica);
 
+                //rellenarGrafico[contador][0] = rs.getInt(1);
+                //rellenarGrafico[contador][1] = rs.getInt(2);
                 contador++;
 
                 System.out.println("Año" + rs.getInt(1) + "|Pacientes: " + rs.getString(2) + "\r\n");
@@ -173,7 +200,7 @@ public class TablaPacientesDao {
         } catch (Exception e) {
             throw new RuntimeException("Ocurrido un error al guardar información: " + e.getMessage());
         }
-        return rellenarGrafico;
+        return rellenaGrafico;
     }
 
     public void actualizar(TablaPacientes paciente) {
@@ -193,31 +220,44 @@ public class TablaPacientesDao {
                     + "', no_ss='" + paciente.getNoSS()
                     + "', telefono='" + paciente.getTelefono()
                     + "', anio='" + sqlDate
-                    + "', datos='" + paciente.getDatos()
-                    + "', h=" + paciente.isH()
+                    + "', datos='" + paciente.getDatos() + "'"
+                    
+                    + " WHERE id=" + paciente.getId();
+            System.out.println("CONSULTA" + sql);
+
+            statement.executeUpdate(sql);
+            
+              Statement statement2 = conexionDatabase.createStatement();
+            sql = "UPDATE orientaciones SET "
+                    + " h=" + paciente.isH()
                     + ", l=" + paciente.isL()
                     + ", g=" + paciente.isG()
                     + ", t=" + paciente.isT()
                     + ", b=" + paciente.isB()
                     + ", i=" + paciente.isI()
-                    + " WHERE id=" + paciente.getId();
+                    + " WHERE id_paciente=" + paciente.getId();
             System.out.println("CONSULTA" + sql);
-                    
-            statement.executeUpdate(sql);
+
+            statement2.executeUpdate(sql);
 
         } catch (Exception e) {
             throw new RuntimeException("Ocurrido un error al actualizar información: " + e.getMessage());
         }
 
-        
     }
 
     public void eliminar(TablaPacientes paciente) {
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
             String sql = "DELETE FROM pacientes WHERE id = " + paciente.getId();
-            System.out.println("MOSTRAR CONSULTA " +sql);
+            System.out.println("MOSTRAR CONSULTA " + sql);
             statement.executeUpdate(sql);
+            
+            Statement statement2= conexionDatabase.createStatement();
+            sql = "DELETE FROM orientaciones WHERE id_paciente = " + paciente.getId();
+            System.out.println("MOSTRAR CONSULTA " + sql);
+            statement2.executeUpdate(sql);
+           
         } catch (Exception e) {
             throw new RuntimeException("Ocurrido un error al eliminar información: " + e.getMessage());
         }
@@ -239,15 +279,27 @@ public class TablaPacientesDao {
         ObservableList<TablaPacientes> pacientes = FXCollections.observableArrayList();
         try (Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
             Statement statement = conexionDatabase.createStatement();
-            String sql = "SELECT * FROM pacientes ORDER BY id";
+            String sql = "SELECT * FROM pacientes p INNER JOIN orientaciones o ON p.id = o.id_paciente ORDER BY id";
+            //String sql = "SELECT * FROM pacientes ORDER BY id";
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
+                TablaPacientes paciente = new TablaPacientes();//*
+                paciente.setId(resultSet.getInt("id"));//*
 
-                TablaPacientes paciente = new TablaPacientes();
-                paciente.setId(resultSet.getInt("id"));
+                /* TablaPacientes encontrado = null;
+                for (int i = 0; i < pacientes.size(); i++) {
+                    if (pacientes.get(i).equals(paciente)) {
+                        encontrado = pacientes.get(i);
+                    }
+                }*/
 
-                paciente.setNombre(resultSet.getString("nombre"));
+ /*if (encontrado != null) {
+
+                    encontrado.anadirGenero(resultSet.getString("genero"));
+
+                } else {*/
+                paciente.setNombre(resultSet.getString("nombre"));//*
                 paciente.setApellido(resultSet.getString("apellido"));
                 paciente.setDni(resultSet.getNString("dni"));
                 paciente.setPeso(resultSet.getDouble("peso"));
@@ -265,11 +317,12 @@ public class TablaPacientesDao {
                 paciente.setT(resultSet.getBoolean("t"));
                 paciente.setB(resultSet.getBoolean("b"));
                 paciente.setI(resultSet.getBoolean("i"));
+                //paciente.anadirGenero(resultSet.getString("genero"));
+                pacientes.add(paciente);//*
+                //}
 
                 //System.out.println(paciente.getDatos());
-                pacientes.add(paciente);
                 //System.out.println(paciente);
-
             }
 
         } catch (Exception e) {

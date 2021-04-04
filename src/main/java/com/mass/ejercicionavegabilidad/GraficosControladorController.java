@@ -7,6 +7,7 @@ package com.mass.ejercicionavegabilidad;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,14 +35,14 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargarGraficos();
+       cargarGraficos();
     }
 
     public void cargarGraficos() {
         //defining the axes
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Number of Month");
+        xAxis.setLabel("Numero de año");
         //creating the chart
         //grafico = new LineChart<Number, Number>(xAxis, yAxis);
 
@@ -52,14 +53,15 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
         //populating the series with data
         //llamar a la matrizy recorrer
         TablaPacientesDao grafica = new TablaPacientesDao();
-        int[][] graficoValor = grafica.rellenarGrafico();
-
-        for (int row = 0; row < graficoValor.length; row++) {
+        //int[][] graficoValor = grafica.rellenarGrafico();
+        
+        ArrayList<ValorGrafica> rellenarGrafico = grafica.rellenarGrafico();
+        for (int row = 0; row < rellenarGrafico.size(); row++) {
             //int[][] rellenarGrafico = new int[100][2];
-           
+            //System.out.println("GRAFICA"+graficoValor[row]);
                 //series.getData().add(new XYChart.Data(graficoValor[row], graficoValor[row][col]));
             //series.getData().add(new XYChart.Data(row, col));
-            series.getData().add(new XYChart.Data(graficoValor[row][0], graficoValor[row][1]));
+            series.getData().add(new XYChart.Data(rellenarGrafico.get(row).getAnio(),rellenarGrafico.get(row).getValor()));
             
 
         }

@@ -28,7 +28,7 @@ public class App extends Application {
 
         layoutPane.mostrarComoPantallaActual("log");
 
-        Scene escena = new Scene(layoutPane, 900, 400);
+        Scene escena = new Scene(layoutPane, 900, 600);
 
         primaryStage.setScene(escena);
         primaryStage.show();

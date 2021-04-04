@@ -388,6 +388,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfEmail.clear();
         tfSS.clear();
         tfTlf.clear();
+        imagen.setImage(null);
         h.setSelected(false);
         l.setSelected(false);
         g.setSelected(false);
