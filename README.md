@@ -1,2 +1,2 @@
 # AppProyectoCiclo
-Proyecto de clase para gestión de pacientes. Se basa en una interfaz que permite gestionar datos de pacientes. Actualmente usa bbdd h2, pero en futuras ampliaciones se cambiará a MySql o Hibernate. También se intentará implementar que recopile datos cardíacos desde un smartwatch, que almacenará para crear un cardiograma histórico del paciente y, poder estar al tanto en tiempo real de la situación del usuario y mandarle avisos. 
+Proyecto de clase para gestión de pacientes. Se basa en una interfaz que permite gestionar datos de pacientes. Actualmente usa bbdd h2, pero en futuras ampliaciones se cambiará a MySql.
