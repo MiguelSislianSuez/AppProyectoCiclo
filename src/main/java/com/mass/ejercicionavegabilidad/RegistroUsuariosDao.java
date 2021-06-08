@@ -5,7 +5,7 @@
  */
 package com.mass.ejercicionavegabilidad;
 
-
+import connetion.ConexionMySQL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -23,30 +23,36 @@ import java.util.logging.Logger;
  */
 public class RegistroUsuariosDao {
 
-    
-    
-    public RegistroUsuariosDao(){
+    public RegistroUsuariosDao() {
         crearTablaSiNoExiste();
     }
 
     public boolean login(Usuario usuario) {
 
-        try (Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
-            Statement statement = conexionDatabase.createStatement();
+        try {
+            //Select usuario 
+            ConexionMySQL conexionDatabase = Utils.createConnection();
+            System.out.println("ENTRO EN LOGIN");
             String H2 = "";
             H2 += "SELECT * ";
             H2 += "FROM usuarios ";
-            H2 += "WHERE lower(usuario) = '" + usuario.getUsuario().toLowerCase() + "' and password = '" + usuario.getPassword() + "'";
+            H2 += "WHERE lower(usuario) = '" + usuario.getUsuario().toLowerCase() + "' and password = MD5('" + usuario.getPassword() + "')";
 
-            ResultSet rs = statement.executeQuery(H2);
+            System.out.println(H2);
+            conexionDatabase.ejecutarConsulta(H2);
+            ResultSet rs = conexionDatabase.getResultSet();
+
             if (rs.next()) {
+                conexionDatabase.cerrarConexion();
                 return true;
 
             } else {
+                conexionDatabase.cerrarConexion();
                 return false;
             }
+
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("Error al enontrar el nombre o usuario");
         }
 
@@ -54,20 +60,23 @@ public class RegistroUsuariosDao {
 
     public void crearTablaSiNoExiste() {
 
-        try (Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
-            Statement statement = conexionDatabase.createStatement();
+        try /*(Connection conexionDatabase
+                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
+            //Statement statement = conexionDatabase.createStatement();
+            ConexionMySQL conexionDatabase = Utils.createConnection();
             //String drop = "DROP TABLE usuarios";
             String sql = "CREATE TABLE IF NOT EXISTS usuarios"
                     + "(id INTEGER auto_increment, "
-                    + " usuario VARCHAR (255), "
-                    + " primerApellido VARCHAR (255),"
-                    + " segundoapellido VARCHAR (255),"
+                    + " usuario VARCHAR (100), "
+                    + " primerApellido VARCHAR (100),"
+                    + " segundoapellido VARCHAR (40),"
                     + " anio DATE,"
-                    + " password VARCHAR (255))";
+                    + " password VARCHAR (100))";
             //statement.executeUpdate(drop);
-            statement.executeUpdate(sql);
-
+            conexionDatabase.ejecutarInstruccion(sql);
+            
+            
+            //statement.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,13 +88,20 @@ public class RegistroUsuariosDao {
         LocalDate dt = usuario.getAnio();
         Date sqlDate = Date.valueOf(dt);//pasar de java a sql el formato de fecha
 
-        try (Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) {
-            Statement st = conexionDatabase.createStatement();
+        try /*(Connection conexionDatabase
+                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
+            //Statement st = conexionDatabase.createStatement();
+            ConexionMySQL conexionDatabase = Utils.createConnection();
+            System.out.println("ENTRO EN Registro");
             String sql = "INSERT INTO usuarios (usuario, primerApellido, segundoApellido, anio, password)"
-                    + "VALUES ('" + usuario.getUsuario() + "', '" + usuario.getApellido_1() + "', '" + usuario.getApellido_2() + "', '" + sqlDate + "', '" + usuario.getPassword() + "')";
+                    + "VALUES ('" + usuario.getUsuario() + "', '" + usuario.getApellido_1() + "', '" + usuario.getApellido_2() + "', '" + sqlDate + "', MD5('" + usuario.getPassword() + "'))";
 
-            st.executeUpdate(sql);
+            System.out.println(sql);
+            conexionDatabase.ejecutarInstruccion(sql);
+           
+            //st.executeUpdate(sql);
+
+         
 
         } catch (Exception e) {
             throw new RuntimeException("Ha ocurrido un problema al intentar insertar en la base de datos" + e.getMessage());

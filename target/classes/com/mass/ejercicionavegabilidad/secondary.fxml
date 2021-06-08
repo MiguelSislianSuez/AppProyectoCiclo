@@ -89,6 +89,8 @@
       </Button>
       
         <Button fx:id="btnPDF" layoutX="676.0" layoutY="523.0" mnemonicParsing="false" onAction="#generarPDF" style="-fx-background-radius: 100;" text="Generar PDF" />
+      <Button fx:id="btnLog" mnemonicParsing="false" onAction="#mostrarLog" text="Log" />
+      <fx:include source="Reloj.fxml" />
       
     </children>
     <padding>

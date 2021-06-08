@@ -12,9 +12,9 @@ package com.mass.ejercicionavegabilidad;
 public class ParametrosConexion {
     
     
-    public static final String URL_CONN = "jdbc:h2:./jfxPacientes";
+   /* public static final String URL_CONN = "jdbc:h2:./jfxPacientes";
     public static final String URL_BD = "kentucky";
     public static final String CONTR_BD = "1234";
-    
+    */
     
 }

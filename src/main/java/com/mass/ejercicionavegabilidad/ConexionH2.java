@@ -15,7 +15,7 @@ import java.sql.Statement;
  *
  * @author Kentucky
  */
-class ConexionH2 {
+/*class ConexionH2 {
      private Connection connection;
     private String username = "kentucky";
     private String password = "1234";
@@ -56,3 +56,4 @@ class ConexionH2 {
         this.connection.close();
     }
 }
+*/

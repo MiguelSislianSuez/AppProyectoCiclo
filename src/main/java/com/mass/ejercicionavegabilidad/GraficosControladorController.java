@@ -35,11 +35,12 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       cargarGraficos();
+       //cargarGraficos();
     }
 
     public void cargarGraficos() {
         //defining the axes
+        grafico.getData().clear();
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Numero de año");
@@ -85,7 +86,7 @@ public class GraficosControladorController extends ControladorConNavegabilidad i
     @FXML
     private void mostrarPantalla(ActionEvent event) {
         this.layout.mostrarComoPantallaActual("a");
-
+        grafico.getData().clear();
     }
 
      

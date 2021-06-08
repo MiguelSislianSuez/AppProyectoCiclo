@@ -1,0 +1,6 @@
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=587
+mail.smtp.user=tfc.liceo@gmail.com
+mail.smtp.password=1234*qwer*
+mail.smtp.starttls.enable=true
+mail.smtp.auth=true

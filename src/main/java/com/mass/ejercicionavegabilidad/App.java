@@ -25,12 +25,14 @@ public class App extends Application {
         layoutPane.cargarPantalla("b", ControladorPantallaB.class.getResource("secondary.fxml"));
         layoutPane.cargarPantalla("reg", RegistroUsuariosController.class.getResource("RegistroUsuariosDao.fxml"));
         layoutPane.cargarPantalla("grafica", GraficosControladorController.class.getResource("GraficosControlador.fxml"));
+        layoutPane.cargarPantalla("loger", GraficosControladorController.class.getResource("ControladorLog.fxml"));
 
         layoutPane.mostrarComoPantallaActual("log");
 
         Scene escena = new Scene(layoutPane, 900, 600);
 
         primaryStage.setScene(escena);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }

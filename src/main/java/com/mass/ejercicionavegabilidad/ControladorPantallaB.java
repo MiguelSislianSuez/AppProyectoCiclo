@@ -31,9 +31,12 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
     private Button secondaryButton;
     @FXML
     private Button grafica;
+    
 
     @FXML
     private Button btnPDF;
+    @FXML
+    private Button btnLog;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -57,10 +60,10 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
 
     @FXML
     private void mostrarGrafica(ActionEvent event) {
-        // GraficosControladorController cargar = new GraficosControladorController();
+        //GraficosControladorController cargar = new GraficosControladorController();
         //cargar.cargarGraficos();
-
-        this.layout.mostrarComoPantallaActual("grafica");
+        GraficosControladorController pantalla = (GraficosControladorController) this.layout.mostrarComoPantallaActual("grafica");
+        pantalla.cargarGraficos();
 
     }
 
@@ -87,6 +90,13 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
 
         }
 
+    }
+
+    @FXML
+    private void mostrarLog(ActionEvent event) throws IOException {
+        ControladorLogController pantallaLog = (ControladorLogController) this.layout.mostrarComoPantallaActual("loger");
+        pantallaLog.cargarLog();
+        
     }
 
 }

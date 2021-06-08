@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mass.ejercicionavegabilidad;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -107,6 +105,11 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     private TextField tfAltura;
     @FXML
     private TextField tfPeso;
+    private Log log;
+    @FXML
+    private Button logOut;
+    @FXML
+    private ImageView btnOut;
 
     @FXML
     public void mostrarPantalla() {
@@ -121,18 +124,22 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dao = new TablaPacientesDao();
-        //cargarPacientesDB();
-        // configurarTamanoClumn();
-        //Metodo salto de linea
-        tfDatos.setWrapText(true);
-        //el boton esta deshabilitado por defecto hasta que todos los campos está a true
-        //btnGuardar.setDisable(true);
-
+        try {
+            dao = new TablaPacientesDao();
+            //cargarPacientesDB();
+            // configurarTamanoClumn();
+            //Metodo salto de linea
+            tfDatos.setWrapText(true);
+            //el boton esta deshabilitado por defecto hasta que todos los campos está a true
+            //btnGuardar.setDisable(true);
+            log = new Log("log/log.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorPantallaA.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
-    public void guardarObjPaciente() {
+    public void guardarObjPaciente() throws IOException {
         //Creamos un objeto paciente a partir del fxml y le pasamos todos los datos al metodo guadar
         TablaPacientes paciente = new TablaPacientes();
         paciente.setNombre(tfNombre.getText());
@@ -169,6 +176,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         alert.setContentText("El paciente ha sido guardado correctamente");
         alert.showAndWait();
 
+        log.addLine("Se han guardado datos del paciente");//esto para todos
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
@@ -185,6 +193,8 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         t.setSelected(false);
         b.setSelected(false);
         i.setSelected(false);
+        srAltura.setValue(0);
+        srPeso.setValue(0);
         url.clear();
         idPacienteSeleccionado = 0;
     }
@@ -256,31 +266,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
 
     }
 
-    /* private void cargarPacientesDB() {
-
-        //Creamos nuestro observable list que irá almacenando delFXMLdinamica
-        ObservableList<TablaPacientes> pacienteTablaBD = FXCollections.observableArrayList();
-        List<TablaPacientes> pacientesEncontradosEnBD = dao.cargarPacientesDB();
-        //ahora añadimos todo de encontradosDB a pacientesTablaDb
-        pacienteTablaBD.addAll(pacientesEncontradosEnBD);
-        System.out.println(pacienteTablaBD);
-        tablaPacientes.setItems(pacienteTablaBD);
-        //tablaPacientes.setItems(pacienteTablaBD);
-
-    }*/
-
- /* private void configurarTamanoClumn() {
-        tablaPacientes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ObservableList<TableColumn<TablaPacientes, ?>> columnas = tablaPacientes.getColumns();
-        columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 5);
-        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 10);
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 10);
-        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 10);
-        columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 45);
-        columnas.get(5).setMaxWidth(1f * Integer.MAX_VALUE * 20);
-
-    }*/
-    //metodos enlazados desde el scenBuilder
+   
     @FXML
     public void actNombre() {
         bNombre = !tfNombre.getText().isEmpty();
@@ -311,7 +297,20 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     }
 
     public void activarDesactivarGuardar() {
-        if ((bNombre == true) && (bApellido == true) && (bDatos == true)) {
+        System.out.println("bNombre: " + bNombre);
+        System.out.println("bApelido: " + bApellido);
+        System.out.println("bDatos: " + bDatos);
+        System.out.println("bEmail: " + bEmail);
+        System.out.println("bDni: " + bDni);
+        System.out.println("bTlf: " + bTlf);
+        System.out.println("bBss: " + bSs);
+        if ((bNombre == true)
+                && (bApellido == true)
+                && (bDatos == true)
+                && (bEmail == true)
+                && (bDni == true)
+                && (bTlf == true)
+                && (bSs == true)) {
             btnGuardar.setDisable(false);
         } else {
             btnGuardar.setDisable(true);
@@ -399,6 +398,8 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfDatos.clear();
         tfAltura.clear();
         tfPeso.clear();
+        srAltura.setValue(0);
+        srPeso.setValue(0);
         url.clear();
 
     }
@@ -408,5 +409,39 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         tfAltura.setText((Math.floor(srAltura.getValue() * 100) / 100) + "");
         tfPeso.setText((Math.floor(srPeso.getValue() * 100) / 100) + "");
         //System.out.println(srAltura.getValue());
+    }
+
+    @FXML
+    private void actDni(KeyEvent event) {
+
+        bDni = tfDni.getText().matches("^[0-9]{8}[T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z|S|Q|V|H|L|C|K|E]$");
+        activarDesactivarGuardar();
+    }
+
+    @FXML
+    private void actNoSS(KeyEvent event) {
+        bSs = tfSS.getText().matches("^[0-9]{11}$");
+        activarDesactivarGuardar();
+    }
+
+    @FXML
+    private void actTlf(KeyEvent event) {
+        bTlf = tfTlf.getText().matches("^[0-9]{9}$");
+        activarDesactivarGuardar();
+    }
+
+    @FXML
+    private void actEmail(KeyEvent event) {
+
+        bEmail = tfEmail.getText().matches("^([\\w-]+\\.)*?[\\w-]+@[\\w-]+\\.([\\w-]+\\.)*?[\\w]+$");
+        activarDesactivarGuardar();
+    }
+
+    @FXML
+    private void bctLogOut(ActionEvent event) throws IOException {
+    ControladorLogController pantallaLogOut = (ControladorLogController) this.layout.mostrarComoPantallaActual("log");
+    pantallaLogOut.cargarLog();
+    
+    
     }
 }

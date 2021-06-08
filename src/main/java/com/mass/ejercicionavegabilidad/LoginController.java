@@ -5,7 +5,6 @@
  */
 package com.mass.ejercicionavegabilidad;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -13,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,8 +33,8 @@ import javafx.stage.Stage;
  * @author Kentucky
  */
 public class LoginController extends ControladorConNavegabilidad implements Initializable {
-
-   @FXML
+    
+    @FXML
     private TextField txtUsuario;
     @FXML
     private TextField txtPass;
@@ -42,36 +43,36 @@ public class LoginController extends ControladorConNavegabilidad implements Init
     @FXML
     private Button btnRegistro;
     
-    
     @FXML
     private AnchorPane registro;
     
     RegistroUsuariosDao registroUsuariosDao;
-
-    /**
-     * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
-     */
-    @Override
+    
+    private Log log;
+    
     public void initialize(URL url, ResourceBundle rb) {
-        registroUsuariosDao= new RegistroUsuariosDao();
-       
+        try {
+            registroUsuariosDao = new RegistroUsuariosDao();
+            
+            log = new Log("log/log.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
- 
     
     Usuario usuario;
+
     @FXML
     private void comprobarLog() throws SQLException, IOException {
-
+        
         String usuarioNombre = this.txtUsuario.getText();
         String password = this.txtPass.getText();
-
-        usuario= new Usuario(usuarioNombre, password);
-       
+        
+        usuario = new Usuario(usuarioNombre, password);
+        
         if (registroUsuariosDao.login(usuario)) {
-            //Alert es propio de jfx podriamos usar el joptionpane
+            log.addLine("Se han registrado los siguientes cambios");
+//Alert es propio de jfx podriamos usar el joptionpane
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Información");
@@ -81,7 +82,7 @@ public class LoginController extends ControladorConNavegabilidad implements Init
             this.layout.mostrarComoPantallaActual("a");
             txtUsuario.clear();
             txtPass.clear();
-           
+            
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -92,11 +93,11 @@ public class LoginController extends ControladorConNavegabilidad implements Init
             txtPass.clear();
         }
     }
-
+    
     @FXML
     private void registro(ActionEvent event) {
         this.layout.mostrarComoPantallaActual("reg");
         
     }
-
+    
 }

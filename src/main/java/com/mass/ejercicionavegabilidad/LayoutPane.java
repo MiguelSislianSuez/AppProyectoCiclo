@@ -47,7 +47,7 @@ public class LayoutPane extends BorderPane {
         return controladoresDeLaApp.get(nombrePantalla);
     }
 
-    public void cargarBarraDeMenuInferior() {
+    /*public void cargarBarraDeMenuInferior() {
         this.setTop(pantallasDeLaApp.get("menu"));
-    }
+    }*/
 }

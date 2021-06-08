@@ -35,6 +35,11 @@ public class ValorGrafica {
     public void setValor(int valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "ValorGrafica{" + "anio=" + anio + ", valor=" + valor + '}';
+    }
     
     
     
