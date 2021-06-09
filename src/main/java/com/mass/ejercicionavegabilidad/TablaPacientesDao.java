@@ -178,6 +178,7 @@ public class TablaPacientesDao {
 
             String contenidoHtml = Utils.getTemplateEmail("pruebasjavafx.html");
             System.out.println(contenidoHtml);
+            
             HiloMail hiloEmail = new HiloMail("Hospital", contenidoHtml, paciente.getEmail());
             hiloEmail.start();
 

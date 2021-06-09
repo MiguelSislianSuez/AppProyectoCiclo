@@ -27,7 +27,7 @@ public class LineasLog {
 
     @Override
     public String toString() {
-        return "LineasLog{" + "linea=" + linea + '}';
+        return "LineasLog{linea=" + linea + "}";
     }
     
     

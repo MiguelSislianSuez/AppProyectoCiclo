@@ -37,6 +37,9 @@ public class ControladorLogController extends ControladorConNavegabilidad implem
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            String propiedadesTabla = "color:#FF000000;"+"-fx-text-fill:black;"+"-fx-background-color:white;";
+            tbLog.setStyle(propiedadesTabla);
+                    
             cargarLog();
         } catch (IOException ex) {
             Logger.getLogger(ControladorLogController.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,6 +68,6 @@ public class ControladorLogController extends ControladorConNavegabilidad implem
     }
 
     void cerrarSesion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }

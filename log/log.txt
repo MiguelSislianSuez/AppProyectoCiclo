@@ -50,3 +50,10 @@
 [08/06/2021 15:59:02] Se han registrado los siguientes cambios
 [08/06/2021 15:59:49] Se han guardado datos del paciente
 [08/06/2021 16:10:03] Se han registrado los siguientes cambios
+[08/06/2021 21:29:44] Se han registrado los siguientes cambios
+[08/06/2021 21:36:06] Se han registrado los siguientes cambios
+[08/06/2021 21:48:17] Se han registrado los siguientes cambios
+[08/06/2021 21:52:44] Se han registrado los siguientes cambios
+[08/06/2021 21:54:35] Se han registrado los siguientes cambios
+[08/06/2021 22:10:24] Se han registrado los siguientes cambios
+[09/06/2021 23:19:55] Se han registrado los siguientes cambios
