@@ -13,17 +13,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="916.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.ControladorPantallaA">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="916.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.ControladorPantallaA">
     <children>
-        <Label layoutX="65.0" layoutY="65.0" text="Nombre" />
-        <TextField fx:id="tfNombre" layoutX="127.0" layoutY="61.0" onKeyTyped="#actNombre" promptText="Nombre" />
+        <Label layoutX="28.0" layoutY="65.0" text="Nombre" />
+        <TextField fx:id="tfNombre" layoutX="90.0" layoutY="61.0" onKeyTyped="#actNombre" promptText="Nombre" />
         
-        <Label layoutX="65.0" layoutY="105.0" text="Apellido" />
-        <TextField fx:id="tfApellido" layoutX="127.0" layoutY="101.0" onKeyTyped="#actApellido" promptText="Apellidos" />
+        <Label layoutX="28.0" layoutY="105.0" text="Apellido" />
+        <TextField fx:id="tfApellido" layoutX="90.0" layoutY="101.0" onKeyTyped="#actApellido" promptText="Apellidos" />
         
-        <DatePicker fx:id="anio" editable="false" layoutX="127.0" layoutY="150.0" onAction="#actAnio" prefHeight="27.0" prefWidth="161.0" promptText="Nacido en" />
+        <DatePicker fx:id="anio" editable="false" layoutX="90.0" layoutY="150.0" onAction="#actAnio" prefHeight="27.0" prefWidth="161.0" promptText="Nacido en" />
         
-        <TextArea fx:id="tfDatos" layoutX="68.0" layoutY="259.0" onKeyTyped="#actDatos" prefHeight="258.0" prefWidth="498.0" />
+        <TextArea fx:id="tfDatos" layoutX="28.0" layoutY="259.0" onKeyTyped="#actDatos" prefHeight="258.0" prefWidth="538.0" />
         
         <TextField fx:id="url" layoutX="698.0" layoutY="473.0" promptText="url foto" />
         
@@ -72,12 +72,12 @@
       <Label layoutX="623.0" layoutY="90.0" text="Altura cm" />
       <TextField fx:id="tfSS" layoutX="405.0" layoutY="150.0" onKeyTyped="#actNoSS" promptText="NºSS" />
       <Label layoutX="328.0" layoutY="105.0" prefHeight="17.0" prefWidth="45.0" text="Nº DNI" />
-      <Label layoutX="65.0" layoutY="156.0" text="Año" />
+      <Label layoutX="28.0" layoutY="156.0" text="Año" />
       <Label layoutX="328.0" layoutY="156.0" prefHeight="17.0" prefWidth="66.0" text="Nº S.Social" />
       <Label layoutX="328.0" layoutY="206.0" prefHeight="17.0" prefWidth="66.0" text="Teléfono" />
-      <Label layoutX="65.0" layoutY="206.0" text="E-Mail" />
+      <Label layoutX="28.0" layoutY="206.0" text="E-Mail" />
       <TextField fx:id="tfTlf" layoutX="405.0" layoutY="201.0" onKeyTyped="#actTlf" promptText="Número móvil" />
-      <TextField fx:id="tfEmail" layoutX="127.0" layoutY="201.0" onKeyTyped="#actEmail" prefHeight="27.0" prefWidth="161.0" promptText="Correo electrónico" />
+      <TextField fx:id="tfEmail" layoutX="90.0" layoutY="201.0" onKeyTyped="#actEmail" prefHeight="27.0" prefWidth="161.0" promptText="Correo electrónico" />
       <TextField fx:id="tfAltura" editable="false" layoutX="601.0" layoutY="201.0" prefHeight="27.0" prefWidth="66.0" promptText="Altura" />
       <TextField fx:id="tfPeso" editable="false" layoutX="684.0" layoutY="201.0" prefHeight="27.0" prefWidth="66.0" promptText="Peso" />
       <ImageView fx:id="imagen" fitHeight="198.0" fitWidth="161.0" layoutX="698.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />

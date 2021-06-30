@@ -31,7 +31,6 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
     private Button secondaryButton;
     @FXML
     private Button grafica;
-    
 
     @FXML
     private Button btnPDF;
@@ -60,8 +59,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
 
     @FXML
     private void mostrarGrafica(ActionEvent event) {
-        //GraficosControladorController cargar = new GraficosControladorController();
-        //cargar.cargarGraficos();
+
         GraficosControladorController pantalla = (GraficosControladorController) this.layout.mostrarComoPantallaActual("grafica");
         pantalla.cargarGraficos();
 
@@ -96,7 +94,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
     private void mostrarLog(ActionEvent event) throws IOException {
         ControladorLogController pantallaLog = (ControladorLogController) this.layout.mostrarComoPantallaActual("loger");
         pantallaLog.cargarLog();
-        
+
     }
 
 }

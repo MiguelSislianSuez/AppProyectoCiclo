@@ -71,8 +71,7 @@ public class LoginController extends ControladorConNavegabilidad implements Init
         usuario = new Usuario(usuarioNombre, password);
         
         if (registroUsuariosDao.login(usuario)) {
-            log.addLine("Se han registrado los siguientes cambios");
-//Alert es propio de jfx podriamos usar el joptionpane
+            log.addLine("Se han registrado un nuevo acceso");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Información");

@@ -6,11 +6,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="468.0" prefWidth="979.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.ControladorPantallaB">
+<VBox alignment="CENTER" prefHeight="568.0" prefWidth="979.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mass.ejercicionavegabilidad.ControladorPantallaB">
     <children>
-   <TableView fx:id="tablaPacientes" layoutX="11.0" layoutY="275.0" prefHeight="366.0" prefWidth="939.0">
+   <TableView fx:id="tablaPacientes" layoutX="11.0" layoutY="275.0" prefHeight="339.0" prefWidth="939.0">
          <columns>
             
              <TableColumn text="id">
@@ -78,18 +79,37 @@
             
          </columns>
       </TableView>
-        <Button fx:id="secondaryButton" onAction="#mostrarPantalla" style="-fx-background-radius: 100;" text="Volver">
-         <graphic>
-              <Label />
-         </graphic></Button>
-      <Button fx:id="grafica" onAction="#mostrarGrafica" style="-fx-background-radius: 100;" text="Grafica">
-         <graphic>
-            <Label />
-         </graphic>
-      </Button>
-      
-        <Button fx:id="btnPDF" layoutX="676.0" layoutY="523.0" mnemonicParsing="false" onAction="#generarPDF" style="-fx-background-radius: 100;" text="Generar PDF" />
-      <Button fx:id="btnLog" mnemonicParsing="false" onAction="#mostrarLog" text="Log" />
+      <HBox prefHeight="90.0" prefWidth="763.0">
+         <children>
+            
+              <Button fx:id="btnPDF" mnemonicParsing="false" onAction="#generarPDF" prefHeight="27.0" prefWidth="93.0" style="-fx-background-radius: 100;" text="Generar PDF">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="grafica" onAction="#mostrarGrafica" prefHeight="27.0" prefWidth="93.0" style="-fx-background-radius: 100;" text="Grafica">
+               <graphic>
+                  <Label />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnLog" mnemonicParsing="false" onAction="#mostrarLog" prefHeight="27.0" prefWidth="93.0" style="-fx-background-radius: 100;" text="Log">
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Button>
+              <Button fx:id="secondaryButton" onAction="#mostrarPantalla" prefHeight="27.0" prefWidth="93.0" style="-fx-background-radius: 100;" text="Volver">
+               <graphic>
+                    <Label />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <fx:include source="Reloj.fxml" />
       
     </children>

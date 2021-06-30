@@ -62,7 +62,6 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     private TextArea tfDatos;
     private boolean bDatos = false;
 
-    // private TableView<TablaPacientes> tablaPacientes;
     @FXML
     ImageView imagen;
 
@@ -111,12 +110,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     @FXML
     private ImageView btnOut;
 
-    @FXML
-    public void mostrarPantalla() {
-        ControladorPantallaB pantalla = (ControladorPantallaB) this.layout.mostrarComoPantallaActual("b");
-        pantalla.cargarPacientes();
-
-    }
+    
 
     private TablaPacientes pacienteSeleccionado;
     int idPacienteSeleccionado = 0;
@@ -126,12 +120,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     public void initialize(URL url, ResourceBundle rb) {
         try {
             dao = new TablaPacientesDao();
-            //cargarPacientesDB();
-            // configurarTamanoClumn();
-            //Metodo salto de linea
             tfDatos.setWrapText(true);
-            //el boton esta deshabilitado por defecto hasta que todos los campos está a true
-            //btnGuardar.setDisable(true);
             log = new Log("log/log.txt");
         } catch (IOException ex) {
             Logger.getLogger(ControladorPantallaA.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,8 +134,6 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setNombre(tfNombre.getText());
         paciente.setApellido(tfApellido.getText());
         paciente.setDni(tfDni.getText());
-        //paciente.setPeso(Double.parseDouble(tfPeso.getText()));
-        //paciente.setAltura(Double.parseDouble(tfAltura.getText()));
         paciente.setPeso(srPeso.getValue());
         paciente.setAltura(srAltura.getValue());
         paciente.setEmail(tfEmail.getText());
@@ -176,7 +163,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         alert.setContentText("El paciente ha sido guardado correctamente");
         alert.showAndWait();
 
-        log.addLine("Se han guardado datos del paciente");//esto para todos
+        log.addLine("Se ha guardado el paciente" + " " + paciente.getNombre()+" "+paciente.getApellido()+ " " +"en la base de datos");//esto para todos
         tfNombre.clear();
         tfApellido.clear();
         tfDni.clear();
@@ -200,10 +187,9 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     }
 
     @FXML
-    public void eliminar() {
+    public void eliminar() throws IOException {
         //creamos el objeto a partir de los datos de la tabla de la bdd a difernecia del metodo guardar
         TablaPacientes paciente = pacienteSeleccionado;/*.getSelectionModel().getSelectedItem();*///con estos metodos ya recive los datos de la tabla 
-        //dao.eliminar(paciente);
         this.pacienteSeleccionado = null;
         limpiarPantalla(null);
 
@@ -216,7 +202,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         // Si hemos pulsado en aceptar
         if (action.get() == ButtonType.OK) {
             dao.eliminar(paciente);
-
+            log.addLine("Se ha eliminado el paciente" + " " + paciente.getNombre()+" "+paciente.getApellido()+ " " +"de la base de datos");//esto para todos
             Alert alertConfirmar = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
             alert.setTitle("Confirmación");
@@ -232,7 +218,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     }
 
     @FXML
-    public void editar() {
+    public void editar() throws IOException {
         TablaPacientes paciente = pacienteSeleccionado;
 
         paciente.setNombre(tfNombre.getText());
@@ -240,7 +226,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setDni(tfDni.getText());
         paciente.setPeso(srPeso.getValue());
         paciente.setAltura(srAltura.getValue());
-        //paciente.setEmail(tfEmail.getText());
+        paciente.setEmail(tfEmail.getText());
         paciente.setNoSS(tfSS.getText());
         paciente.setTelefono(tfTlf.getText());
         paciente.setAnio(anio.getValue());
@@ -252,12 +238,12 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
         paciente.setT(t.isSelected());
         paciente.setB(b.isSelected());
         paciente.setI(i.isSelected());
-        //paciente.setId(idPacienteSeleccionado);
         paciente.setUrl(url.getText());
 
         idPacienteSeleccionado = paciente.getId();
 
         dao.actualizar(paciente);
+        log.addLine("Se ha actualizado el paciente" + " " + paciente.getNombre()+" "+paciente.getApellido()+ " " +"en la base de datos");//esto para todos
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setTitle("Confirmación");
@@ -319,7 +305,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     }
 
     @FXML
-    private void buscarObjPaciente(ActionEvent event) {
+    private void buscarObjPaciente(ActionEvent event) throws IOException {
 
         String dni = this.tfDni.getText();
         pacienteSeleccionado = dao.getPacienteByDni(dni);
@@ -350,7 +336,6 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
             //condicion para imagenes por defecto
             Image img;
             if (pacienteSeleccionado.getUrl() != null && !pacienteSeleccionado.getUrl().equals("")) {
-                //System.out.println(paciente.getUrl());
                 img = new Image(pacienteSeleccionado.getUrl());
             } else {
                 img = new Image("/img/not.png");
@@ -358,6 +343,7 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
 
             imagen.setImage(img);
             //cargarPacientesDB();
+            log.addLine("Se ha buscado el paciente" + " " + pacienteSeleccionado.getNombre()+" "+pacienteSeleccionado.getApellido()+ " " +"en la base de datos");//esto para todos
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -443,5 +429,11 @@ public class ControladorPantallaA extends ControladorConNavegabilidad implements
     pantallaLogOut.cargarLog();
     
     
+    }
+    @FXML
+    public void mostrarPantalla() {
+        ControladorPantallaB pantalla = (ControladorPantallaB) this.layout.mostrarComoPantallaActual("b");
+        pantalla.cargarPacientes();
+
     }
 }

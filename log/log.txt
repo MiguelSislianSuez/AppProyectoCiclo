@@ -57,3 +57,57 @@
 [08/06/2021 21:54:35] Se han registrado los siguientes cambios
 [08/06/2021 22:10:24] Se han registrado los siguientes cambios
 [09/06/2021 23:19:55] Se han registrado los siguientes cambios
+[10/06/2021 22:17:34] Se han registrado los siguientes cambios
+[10/06/2021 22:19:07] Se han registrado los siguientes cambios
+[10/06/2021 22:20:16] Se han registrado los siguientes cambios
+[10/06/2021 22:32:07] Se han registrado los siguientes cambios
+[10/06/2021 22:34:09] Se han registrado los siguientes cambios
+[10/06/2021 22:44:25] Se han registrado los siguientes cambios
+[10/06/2021 22:45:56] Se han registrado los siguientes cambios
+[10/06/2021 22:54:23] Se han registrado los siguientes cambios
+[10/06/2021 22:56:34] Se han guardado datos del paciente
+[10/06/2021 23:33:14] Se han registrado los siguientes cambios
+[11/06/2021 19:11:46] Se han registrado los siguientes cambios
+[11/06/2021 19:15:57] Se han guardado datos del paciente
+[11/06/2021 19:22:51] Se han guardado datos del paciente
+[11/06/2021 19:37:39] Se han registrado los siguientes cambios
+[11/06/2021 19:43:30] Se han registrado los siguientes cambios
+[11/06/2021 19:45:08] Se han guardado datos del paciente
+[11/06/2021 19:50:46] Se han guardado datos del paciente
+[11/06/2021 20:01:46] Se han registrado los siguientes cambios
+[11/06/2021 20:03:52] Se han guardado datos del paciente
+[11/06/2021 20:26:05] Se han registrado un nuevo acceso
+[11/06/2021 20:26:52] Se han guardado datos del paciente
+[11/06/2021 20:27:41] Se han eliminado un registro de la base de datos
+[11/06/2021 20:29:26] Se han registrado un nuevo acceso
+[11/06/2021 20:32:43] Se han guardado datos del pacienteJacobo 
+[11/06/2021 20:40:51] Se han registrado un nuevo acceso
+[11/06/2021 20:42:20] Se ha guardado el paciente Antonio Lopez en la base de datos
+[11/06/2021 20:42:58] Se ha buscado el paciente Antonio Lopez en la base de datos
+[11/06/2021 20:43:14] Se ha eliminado el paciente Antonio Lopez de la base de datos
+[11/06/2021 20:54:45] Se ha registrado Miguel Sislian Suez como nuevo administrador de la base de datos
+[11/06/2021 20:54:55] Se han registrado un nuevo acceso
+[11/06/2021 20:59:56] Se ha registrado Hector Niqui  Piñeiro como nuevo administrador de la base de datos
+[11/06/2021 21:01:06] Se han registrado un nuevo acceso
+[11/06/2021 21:03:08] Se ha guardado el paciente Rafael  Mayo en la base de datos
+[11/06/2021 21:04:03] Se ha buscado el paciente Rafael  Mayo en la base de datos
+[11/06/2021 21:04:26] Se ha actualizado el paciente Rafael  Mayo Yava en la base de datos
+[11/06/2021 21:04:45] Se ha buscado el paciente Rafael  Mayo Yava en la base de datos
+[11/06/2021 21:04:54] Se ha eliminado el paciente Rafael  Mayo Yava de la base de datos
+[14/06/2021 15:25:16] Se han registrado un nuevo acceso
+[14/06/2021 15:29:28] Se ha guardado el paciente Leyla Suez en la base de datos
+[14/06/2021 16:49:14] Se han registrado un nuevo acceso
+[14/06/2021 16:56:47] Se han registrado un nuevo acceso
+[14/06/2021 16:57:52] Se ha guardado el paciente mmm sdfsdfsdf en la base de datos
+[14/06/2021 18:13:14] Se ha registrado Manuel Rico  como nuevo administrador de la base de datos
+[14/06/2021 18:13:31] Se han registrado un nuevo acceso
+[14/06/2021 18:15:38] Se ha guardado el paciente Miguel Sislian en la base de datos
+[14/06/2021 18:16:30] Se ha buscado el paciente Miguel Sislian en la base de datos
+[14/06/2021 18:16:47] Se ha actualizado el paciente Miguel Alejandro Sislian en la base de datos
+[14/06/2021 18:21:42] Se ha guardado el paciente Hector Niqui en la base de datos
+[14/06/2021 18:21:48] Se ha buscado el paciente Hector Niqui en la base de datos
+[14/06/2021 18:22:11] Se ha actualizado el paciente Hector Niqui en la base de datos
+[14/06/2021 18:22:22] Se ha buscado el paciente Hector Niqui en la base de datos
+[14/06/2021 18:22:34] Se ha eliminado el paciente Hector Niqui de la base de datos
+[14/06/2021 18:23:51] Se han registrado un nuevo acceso
+[14/06/2021 18:40:49] Se ha guardado el paciente niquiqw qweqweqw en la base de datos

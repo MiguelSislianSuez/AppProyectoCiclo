@@ -60,11 +60,8 @@ public class RegistroUsuariosDao {
 
     public void crearTablaSiNoExiste() {
 
-        try /*(Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
-            //Statement statement = conexionDatabase.createStatement();
+        try {
             ConexionMySQL conexionDatabase = Utils.createConnection();
-            //String drop = "DROP TABLE usuarios";
             String sql = "CREATE TABLE IF NOT EXISTS usuarios"
                     + "(id INTEGER auto_increment, "
                     + " usuario VARCHAR (100), "
@@ -72,11 +69,8 @@ public class RegistroUsuariosDao {
                     + " segundoapellido VARCHAR (40),"
                     + " anio DATE,"
                     + " password VARCHAR (100))";
-            //statement.executeUpdate(drop);
             conexionDatabase.ejecutarInstruccion(sql);
-            
-            
-            //statement.executeUpdate(sql);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,9 +82,7 @@ public class RegistroUsuariosDao {
         LocalDate dt = usuario.getAnio();
         Date sqlDate = Date.valueOf(dt);//pasar de java a sql el formato de fecha
 
-        try /*(Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
-            //Statement st = conexionDatabase.createStatement();
+        try {
             ConexionMySQL conexionDatabase = Utils.createConnection();
             System.out.println("ENTRO EN Registro");
             String sql = "INSERT INTO usuarios (usuario, primerApellido, segundoApellido, anio, password)"
@@ -98,10 +90,6 @@ public class RegistroUsuariosDao {
 
             System.out.println(sql);
             conexionDatabase.ejecutarInstruccion(sql);
-           
-            //st.executeUpdate(sql);
-
-         
 
         } catch (Exception e) {
             throw new RuntimeException("Ha ocurrido un problema al intentar insertar en la base de datos" + e.getMessage());

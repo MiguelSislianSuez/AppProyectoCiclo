@@ -23,11 +23,9 @@ public class TablaPacientes {
     private double peso;
     private double altura;
     private boolean h, l, g, t, b, i;
-    //private ArrayList<String> generos_2;
     private String generos;
 
     public TablaPacientes() {
-   //     this.generos_2 = new ArrayList<>();
         
     }
 

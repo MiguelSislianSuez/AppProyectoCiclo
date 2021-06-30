@@ -24,14 +24,10 @@ public class HiloMail extends Thread {
         this.asunto = asunto;
         this.mensaje = mensaje;
         this.correo = correo;
-        
+
     }
 
-   
-
     public void run() {
-        
-        
 
         try {
             Mail m = new Mail("config/configuracion.prop");

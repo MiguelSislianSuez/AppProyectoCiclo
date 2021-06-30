@@ -31,9 +31,7 @@ public class TablaPacientesDao {
 
     public void crearTablaSiNoExiste() {
 
-        try /*(Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
-            //Statement statement = conexionDatabase.createStatement();
+        try {
             ConexionMySQL conexionDatabase = Utils.createConnection();
 
             String sql = "CREATE TABLE IF NOT EXISTS pacientes"
@@ -51,7 +49,6 @@ public class TablaPacientesDao {
                     + " datos VARCHAR (255))";
             conexionDatabase.ejecutarInstruccion(sql);
 
-            //statement.executeUpdate(sql);
             String sql2 = "CREATE TABLE IF NOT EXISTS orientaciones"
                     + "(id_paciente INTEGER auto_increment, "
                     + " h BOOLEAN,"
@@ -62,7 +59,6 @@ public class TablaPacientesDao {
                     + " i BOOLEAN)";
             conexionDatabase.ejecutarInstruccion(sql2);
 
-            //statement.executeUpdate(sql2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,15 +69,13 @@ public class TablaPacientesDao {
 
         TablaPacientes encontrado = null;
 
-        try /*(Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
-            //Statement statement = conexionDatabase.createStatement();
+        try {
+
             ConexionMySQL conexionDatabase = Utils.createConnection();
 
             String sql = "SELECT * FROM pacientes p INNER JOIN orientaciones o WHERE p.id = o.id_paciente AND dni = '" + dni + "'";
             conexionDatabase.ejecutarConsulta(sql);
             ResultSet resultSet = conexionDatabase.getResultSet();
-            //ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
                 //creamos nuestro objeto vacio departamento al que le damos unos valores
@@ -108,9 +102,6 @@ public class TablaPacientesDao {
                 paciente.setI(resultSet.getBoolean("i"));
 
                 encontrado = paciente;
-                //System.out.println(paciente.getDatos());
-                //pacientes.add(paciente);
-                //System.out.println(paciente);
 
             }
 
@@ -124,10 +115,10 @@ public class TablaPacientesDao {
     public void guardar(TablaPacientes paciente) {
         LocalDate ld = paciente.getAnio();
         java.sql.Date sqlDate = java.sql.Date.valueOf(ld);
-        try /*(Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
-            //Statement statement = conexionDatabase.createStatement();
-            ConexionMySQL conexionDatabase = Utils.createConnection();
 
+        try {
+
+            ConexionMySQL conexionDatabase = Utils.createConnection();
             String sql = "INSERT INTO pacientes (nombre, apellido, dni, peso, altura, email, no_ss, telefono, anio, url, datos)"
                     + "VALUES ('" + paciente.getNombre()
                     + "', '" + paciente.getApellido()
@@ -144,20 +135,15 @@ public class TablaPacientesDao {
             System.out.println("SQL 1" + sql);
             conexionDatabase.ejecutarInstruccion(sql);
 
-            //ejecutamos la consulta
-            //statement.executeUpdate(sql);
-            //Statement statement2 = conexionDatabase.createStatement();
             sql = "SELECT MAX(id) AS last_id FROM pacientes";
             conexionDatabase.ejecutarConsulta(sql);
             ResultSet rs2 = conexionDatabase.getResultSet();
 
-            //ResultSet rs2 = statement2.executeQuery(sql);
             if (rs2.next()) {
                 int id = rs2.getInt("last_id");
 
                 System.out.println("ESTE ES EL ID " + id);
 
-                //Statement statement3 = conexionDatabase.createStatement();
                 sql = "INSERT INTO orientaciones (id_paciente, h, l ,g, t, b, i)"
                         + "VALUES ("
                         + id
@@ -171,14 +157,12 @@ public class TablaPacientesDao {
                 System.out.println("SQL 2" + sql);
                 conexionDatabase.ejecutarInstruccion(sql);
                 ResultSet rs3 = conexionDatabase.getResultSet();
-                //statement3.executeUpdate(sql);
-            }
 
-            System.out.println("Información guardada en la base de datos H2");
+            }
 
             String contenidoHtml = Utils.getTemplateEmail("pruebasjavafx.html");
             System.out.println(contenidoHtml);
-            
+
             HiloMail hiloEmail = new HiloMail("Hospital", contenidoHtml, paciente.getEmail());
             hiloEmail.start();
 
@@ -188,32 +172,24 @@ public class TablaPacientesDao {
 
     }
 
-    public ArrayList<ValorGrafica> rellenarGrafico() {
+    public ArrayList<ValorGrafica> rellenarGrafico() {//*********VALORES DEL LINE CHART
 
         ArrayList<ValorGrafica> rellenaGrafico = new ArrayList<>();
 
-        //int[][] rellenarGrafico = new int[100][2];
-        try /*(Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
+        try {
 
-            //Statement statement = conexionDatabase.createStatement();
             ConexionMySQL conexionDatabase = Utils.createConnection();
-
             String sql = "SELECT year(anio) AS year, COUNT(*) AS num_pacientes FROM pacientes GROUP BY year(anio) ORDER BY year(anio)";
-            //guardar en en mia mtriz las filas y columnas y llamarlas desde la clase GRafica
-            //ejecutamos la consulta
-            //statement.executeQuery(sql);
+
             conexionDatabase.ejecutarConsulta(sql);
             ResultSet rs = conexionDatabase.getResultSet();
-            // ResultSet rs = statement.executeQuery(sql);
 
             int contador = 0;
 
             while (rs.next()) {
                 ValorGrafica valorGrafica = new ValorGrafica(rs.getInt(1), rs.getInt(2));
                 rellenaGrafico.add(valorGrafica);
-                
-                //rellenarGrafico[contador][0] = rs.getInt(1);
-                //rellenarGrafico[contador][1] = rs.getInt(2);
+
                 contador++;
 
                 System.out.println("Año" + rs.getInt(1) + "|Pacientes: " + rs.getString(2) + "\r\n");
@@ -232,11 +208,8 @@ public class TablaPacientesDao {
 
         java.sql.Date sqlDate = java.sql.Date.valueOf(ld);
 
-        try /*(Connection conexionDatabase
-                = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
+        try {
             ConexionMySQL conexionDatabase = Utils.createConnection();
-
-            //Statement statement = conexionDatabase.createStatement();
             String sql = "UPDATE pacientes SET nombre='"
                     + paciente.getNombre()
                     + "', apellido='" + paciente.getApellido()
@@ -252,10 +225,8 @@ public class TablaPacientesDao {
                     + " WHERE id=" + paciente.getId();
             System.out.println("CONSULTA" + sql);
 
-            //statement.executeUpdate(sql);
             conexionDatabase.ejecutarInstruccionPreparada(sql);
 
-            //Statement statement2 = conexionDatabase.createStatement();
             sql = "UPDATE orientaciones SET "
                     + " h=" + paciente.isH()
                     + ", l=" + paciente.isL()
@@ -267,7 +238,6 @@ public class TablaPacientesDao {
             System.out.println("CONSULTA" + sql);
             conexionDatabase.ejecutarInstruccionPreparada(sql);
 
-            //statement2.executeUpdate(sql);
             HiloMail hiloEmail = new HiloMail("Hospital", "Se ha actualizado correctamente en nuesta base de datos", paciente.getEmail());
             hiloEmail.start();
 
@@ -278,21 +248,17 @@ public class TablaPacientesDao {
     }
 
     public void eliminar(TablaPacientes paciente) {
-        try /*(Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD)) */ {
-            //Statement statement = conexionDatabase.createStatement();
+        try {
             ConexionMySQL conexionDatabase = Utils.createConnection();
 
             String sql = "DELETE FROM pacientes WHERE id = " + paciente.getId();
             System.out.println("MOSTRAR CONSULTA " + sql);
             conexionDatabase.ejecutarInstruccion(sql);
 
-            //statement.executeUpdate(sql);
-            //Statement statement2 = conexionDatabase.createStatement();
             sql = "DELETE FROM orientaciones WHERE id_paciente = " + paciente.getId();
             System.out.println("MOSTRAR CONSULTA " + sql);
             conexionDatabase.ejecutarInstruccion(sql);
 
-            //statement2.executeUpdate(sql);
             HiloMail hiloEmail = new HiloMail("Hospital", "Se ha eliminado correctamente en nuesta base de datos", paciente.getEmail());
             hiloEmail.start();
 
@@ -315,32 +281,16 @@ public class TablaPacientesDao {
     public ObservableList<TablaPacientes> cargarPacientesDB() {
 
         ObservableList<TablaPacientes> pacientes = FXCollections.observableArrayList();
-        try /*(Connection conexionDatabase = DriverManager.getConnection(ParametrosConexion.URL_CONN, ParametrosConexion.URL_BD, ParametrosConexion.CONTR_BD))*/ {
-            //Statement statement = conexionDatabase.createStatement();
+        try {
             ConexionMySQL conexionDatabase = Utils.createConnection();
-
             String sql = "SELECT * FROM pacientes p INNER JOIN orientaciones o ON p.id = o.id_paciente ORDER BY id";
-            //String sql = "SELECT * FROM pacientes ORDER BY id";
+
             conexionDatabase.ejecutarConsulta(sql);
             ResultSet resultSet = conexionDatabase.getResultSet();
-            //ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
                 TablaPacientes paciente = new TablaPacientes();//*
                 paciente.setId(resultSet.getInt("id"));//*
-
-                /* TablaPacientes encontrado = null;
-                for (int i = 0; i < pacientes.size(); i++) {
-                    if (pacientes.get(i).equals(paciente)) {
-                        encontrado = pacientes.get(i);
-                    }
-                }*/
-
- /*if (encontrado != null) {
-
-                    encontrado.anadirGenero(resultSet.getString("genero"));
-
-                } else {*/
                 paciente.setNombre(resultSet.getString("nombre"));//*
                 paciente.setApellido(resultSet.getString("apellido"));
                 paciente.setDni(resultSet.getNString("dni"));
@@ -352,25 +302,19 @@ public class TablaPacientesDao {
                 paciente.setAnio((resultSet.getDate("anio")).toLocalDate());
                 paciente.setUrl(resultSet.getString("url"));
                 paciente.setDatos(resultSet.getString("datos"));
-
                 paciente.setH(resultSet.getBoolean("h"));
                 paciente.setL(resultSet.getBoolean("l"));
                 paciente.setG(resultSet.getBoolean("g"));
                 paciente.setT(resultSet.getBoolean("t"));
                 paciente.setB(resultSet.getBoolean("b"));
                 paciente.setI(resultSet.getBoolean("i"));
-                //paciente.anadirGenero(resultSet.getString("genero"));
                 pacientes.add(paciente);//*
-                //}
 
-                //System.out.println(paciente.getDatos());
-                //System.out.println(paciente);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //System.out.println(pacientes.toString());
 
         return pacientes;
 
